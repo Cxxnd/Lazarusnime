@@ -13,7 +13,7 @@ const Page = async () => {
             {/* Header */}
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 drop-shadow-md">
-                    AnimeV2
+                    LAZARUSNIME
                 </h1>
                 <p className="text-gray-400 mt-2">
                     Tonton anime favoritmu dengan tampilan elegan dan cepat 🚀

@@ -10,7 +10,7 @@ const Navbar = () => {
                     href="/"
                     className="font-extrabold text-3xl text-white hover:text-gray-300 transition-colors duration-300"
                 >
-                    ANIMEV2
+                    LAZARUSNIME
                 </Link>
 
                 {/* Search Input */}
