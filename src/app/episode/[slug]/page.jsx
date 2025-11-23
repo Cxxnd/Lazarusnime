@@ -13,38 +13,32 @@ const Page = async ({ params }) => {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white px-6 py-10 space-y-20">
             <div className="max-w-6xl mx-auto space-y-10">
-                <div className="min-h-screen bg-black text-white p-6 rounded-xl">
-                    <ButtonBack />
-
-                    <h1 className="text-center text-3xl font-bold my-6">
-                        {data.episode}
-                    </h1>
-
+                <ButtonBack />
+                <div className="bg-black text-white p-6 rounded-xl">
                     {/* PLAYER */}
                     <div className="my-10">
                         <VideoPlayer streamServers={data?.stream_servers} />
                     </div>
+                </div>
+                {/* Navigasi Episode */}
+                <div className="flex justify-between mt-10">
+                    {data.has_previous_episode && (
+                        <Link
+                            href={`/episode/${data.previous_episode.slug}`}
+                            className="px-4 py-2 bg-blue-600 rounded"
+                        >
+                            ⬅ Sebelumnya
+                        </Link>
+                    )}
 
-                    {/* Navigasi Episode */}
-                    <div className="flex justify-between mt-10">
-                        {data.has_previous_episode && (
-                            <Link
-                                href={`/episode/${data.previous_episode.slug}`}
-                                className="px-4 py-2 bg-blue-600 rounded"
-                            >
-                                ⬅ Sebelumnya
-                            </Link>
-                        )}
-
-                        {data.has_next_episode && (
-                            <Link
-                                href={`/episode/${data.next_episode.slug}`}
-                                className="px-4 py-2 bg-blue-600 rounded"
-                            >
-                                Selanjutnya ➡
-                            </Link>
-                        )}
-                    </div>
+                    {data.has_next_episode && (
+                        <Link
+                            href={`/episode/${data.next_episode.slug}`}
+                            className="px-4 py-2 bg-blue-600 rounded"
+                        >
+                            Selanjutnya ➡
+                        </Link>
+                    )}
                 </div>
             </div>
 
