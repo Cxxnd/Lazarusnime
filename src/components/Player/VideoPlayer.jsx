@@ -6,34 +6,6 @@ export default function VideoPlayer({ streamServers }) {
     const API_BASE = "https://www.sankavollerei.com";
 
     const iframeRef = useRef(null);
-    let wakeLock = useRef(null);
-
-    const requestWakeLock = async () => {
-        try {
-            if ("wakeLock" in navigator) {
-                wakeLock.current = await navigator.wakeLock.request("screen");
-                console.log("Wake Lock aktif");
-
-                wakeLock.current.addEventListener("release", () => {
-                    console.log("Wake Lock dilepas");
-                });
-            }
-        } catch (err) {
-            console.warn("Wake Lock gagal:", err);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener("visibilitychange", () => {
-            if (document.visibilityState === "visible" && wakeLock.current) {
-                requestWakeLock();
-            }
-        });
-    }, []);
-
-    useEffect(() => {
-        requestWakeLock();
-    }, []);
 
     const grouped = useMemo(() => {
         const map = {};
