@@ -8,7 +8,7 @@ const Navbar = () => {
                 {/* Logo/Brand Name */}
                 <Link
                     href="/"
-                    className="font-extrabold text-3xl text-white hover:text-gray-300 transition-colors duration-300"
+                    className="font-extrabold text-2xl text-white hover:text-gray-300 transition-colors duration-300"
                 >
                     LAZARUSNIME
                 </Link>
