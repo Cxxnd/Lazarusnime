@@ -7,25 +7,25 @@ export default function VideoPlayer({ streamServers }) {
 
     const iframeRef = useRef(null);
 
-    useEffect(() => {
-        const handleFullscreen = () => {
-            if (document.fullscreenElement) {
-                if (screen.orientation?.lock) {
-                    screen.orientation.lock("landscape").catch(() => {});
-                }
-            } else {
-                if (screen.orientation?.lock) {
-                    screen.orientation.lock("portrait").catch(() => {});
-                }
-            }
-        };
+    // useEffect(() => {
+    //     const handleFullscreen = () => {
+    //         if (document.fullscreenElement) {
+    //             if (screen.orientation?.lock) {
+    //                 screen.orientation.lock("landscape").catch(() => {});
+    //             }
+    //         } else {
+    //             if (screen.orientation?.lock) {
+    //                 screen.orientation.lock("portrait").catch(() => {});
+    //             }
+    //         }
+    //     };
 
-        document.addEventListener("fullscreenchange", handleFullscreen);
+    //     document.addEventListener("fullscreenchange", handleFullscreen);
 
-        return () => {
-            document.removeEventListener("fullscreenchange", handleFullscreen);
-        };
-    }, []);
+    //     return () => {
+    //         document.removeEventListener("fullscreenchange", handleFullscreen);
+    //     };
+    // }, []);
 
     const grouped = useMemo(() => {
         const map = {};
@@ -73,8 +73,8 @@ export default function VideoPlayer({ streamServers }) {
                     <iframe
                         ref={iframeRef}
                         src={streamUrl}
+                        frameBorder="0"
                         allow="fullscreen"
-                        allowFullScreen
                         className="w-full h-full"
                     ></iframe>
                 ) : (
