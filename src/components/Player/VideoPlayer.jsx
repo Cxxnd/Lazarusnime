@@ -75,6 +75,7 @@ export default function VideoPlayer({ streamServers }) {
                         src={streamUrl}
                         frameBorder="0"
                         allow="fullscreen"
+                        allowFullScreen
                         className="w-full h-full"
                     ></iframe>
                 ) : (
