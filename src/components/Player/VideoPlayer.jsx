@@ -77,7 +77,7 @@ export default function VideoPlayer({ streamServers }) {
                         allow="fullscreen"
                         allowFullScreen
                         className="w-full h-full object-cover"
-                    />
+                    ></video>
                 ) : (
                     <div className="text-white flex justify-center items-center h-full">
                         Loading...
