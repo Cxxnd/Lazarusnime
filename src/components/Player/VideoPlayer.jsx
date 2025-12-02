@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 export default function VideoPlayer({ streamServers }) {
     const API_BASE = "https://www.sankavollerei.com";
 
-    // const iframeRef = useRef(null);
+    const iframeRef = useRef(null);
 
     useEffect(() => {
         const handleFullscreen = () => {
@@ -68,16 +68,16 @@ export default function VideoPlayer({ streamServers }) {
     return (
         <div className="w-full space-y-6">
             {/* VIDEO */}
-            <div className="w-full aspect-video bg-black rounded-lg overflow-hidden">
+            <div className="w-full aspect-video rounded-lg overflow-hidden">
                 {streamUrl ? (
-                    <iframe
-                        // ref={iframeRef}
+                    <video
+                        ref={iframeRef}
                         src={streamUrl}
                         frameBorder="0"
                         allow="fullscreen"
                         allowFullScreen
                         className="w-full h-full"
-                    ></iframe>
+                    />
                 ) : (
                     <div className="text-white flex justify-center items-center h-full">
                         Loading...
