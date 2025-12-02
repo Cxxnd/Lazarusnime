@@ -11,13 +11,21 @@ export default function VideoPlayer({ streamServers }) {
 
     /* ===== FULLSCREEN DETECTION ===== */
     useEffect(() => {
-        const onFsChange = () => {
-            setIsFullscreen(!!document.fullscreenElement);
+        const handleFullscreen = () => {
+            if (document.fullscreenElement) {
+                if (screen.orientation?.lock) {
+                    screen.orientation.lock("landscape").catch(() => {});
+                }
+            } else {
+                if (screen.orientation?.lock) {
+                    screen.orientation.lock("portrait").catch(() => {});
+                }
+            }
         };
-
-        document.addEventListener("fullscreenchange", onFsChange);
-        return () =>
-            document.removeEventListener("fullscreenchange", onFsChange);
+        document.addEventListener("fullscreenchange", handleFullscreen);
+        return () => {
+            document.removeEventListener("fullscreenchange", handleFullscreen);
+        };
     }, []);
 
     /* ===== GROUP BY RESOLUTION ===== */
