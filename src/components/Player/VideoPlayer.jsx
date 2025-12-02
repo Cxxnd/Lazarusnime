@@ -64,6 +64,7 @@ export default function VideoPlayer({ streamServers }) {
                         src={streamUrl}
                         className="w-full h-full"
                         allow="fullscreen; autoplay; encrypted-media; picture-in-picture"
+                        autoplay
                         allowFullScreen
                         playsInline
                     />
