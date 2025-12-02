@@ -7,8 +7,6 @@ export default function VideoPlayer({ streamServers }) {
     const iframeRef = useRef(null);
     const containerRef = useRef(null);
 
-    const [isFullscreen, setIsFullscreen] = useState(false);
-
     /* ===== FULLSCREEN DETECTION ===== */
     useEffect(() => {
         const handleFullscreen = () => {
@@ -62,9 +60,7 @@ export default function VideoPlayer({ streamServers }) {
             {/* VIDEO CONTAINER */}
             <div
                 ref={containerRef}
-                className={`bg-black overflow-hidden rounded-xl
-                ${isFullscreen ? "fixed inset-0 z-50" : "w-full aspect-video"}
-            `}
+                className={`bg-black overflow-hidden rounded-xl w-full aspect-video`}
             >
                 {streamUrl ? (
                     <iframe
