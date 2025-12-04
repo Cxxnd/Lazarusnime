@@ -92,7 +92,7 @@ const AnimeList = ({ api, mode }) => {
                                 <span className="text-gray-300 font-medium">
                                     {anime.episode_count ||
                                         anime.current_episode ||
-                                        "?"}
+                                        "ongoing"}
                                 </span>
                             </p>
                             {/* Genre 3 pertama */}
