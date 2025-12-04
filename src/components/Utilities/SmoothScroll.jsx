@@ -8,7 +8,7 @@ export default function SmoothScrollProvider({ children }) {
         const lenis = new Lenis({
             duration: 1.05,
             smoothWheel: true,
-            smoothTouch: false,
+            smoothTouch: true,
             easing: (t) => 1 - Math.pow(1 - t, 3),
         });
 
