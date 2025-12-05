@@ -86,7 +86,7 @@ export default function VideoPlayer({ streamServers }) {
             </div>
 
             {/* RESOLUSI */}
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap mt-5">
                 {qualities.map((q) => (
                     <button
                         key={q}
@@ -106,7 +106,7 @@ export default function VideoPlayer({ streamServers }) {
             </div>
 
             {/* SERVER */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mt-5">
                 {grouped[currentQuality].map((srv, i) => (
                     <button
                         key={i}

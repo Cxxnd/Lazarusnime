@@ -12,7 +12,7 @@ const Page = async ({ params }) => {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white px-6 py-10 space-y-20">
-            <div className="max-w-6xl mx-auto space-y-10 max-h-3xl">
+            <div className="max-w-6xl mx-auto space-y-10">
                 <ButtonBack />
                 <div className="bg-black text-white p-6 rounded-xl">
                     {/* PLAYER */}
@@ -20,7 +20,7 @@ const Page = async ({ params }) => {
                         <VideoPlayer streamServers={data?.stream_servers} />
 
                         {/* Navigasi Episode */}
-                        <div className="flex justify-between mt-10">
+                        <div className="flex justify-between align-items-center mt-15">
                             {data.has_previous_episode && (
                                 <Link
                                     href={`/episode/${data.previous_episode.slug}`}
