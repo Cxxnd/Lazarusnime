@@ -13,6 +13,5 @@ export function middleware(request) {
             return NextResponse.redirect(new URL("/maintenance", request.url));
         }
     }
-
     return NextResponse.next();
 }
