@@ -6,10 +6,10 @@ export function middleware(request) {
 
         if (
             !pathname.startsWith("/_next") &&
-            pathname !== "/maintenence" &&
+            pathname !== "/maintenece" &&
             !pathname.includes(".")
         ) {
-            return NextResponse.redirect(new URL("/maintenence", request.url));
+            return NextResponse.redirect(new URL("/maintenece", request.url));
         }
     }
 
