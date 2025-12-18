@@ -8,7 +8,7 @@ const Page = async ({ params }) => {
     const episode = await getAnime({ resource: `episode/${slug}` });
 
     const data = episode?.data;
-    const downloads = data?.download_urls;
+    const downloads = data?.downloadUrl;
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white px-6 py-10 space-y-20">
@@ -17,22 +17,22 @@ const Page = async ({ params }) => {
                 <div className="bg-black text-white p-6 rounded-xl">
                     {/* PLAYER */}
                     <div className="my-30">
-                        <VideoPlayer streamServers={data?.stream_servers} />
+                        <VideoPlayer streamServers={data.server.qualities} />
 
                         {/* Navigasi Episode */}
                         <div className="flex justify-between align-items-center mt-15">
-                            {data.has_previous_episode && (
+                            {data.prevEpisode && (
                                 <Link
-                                    href={`/episode/${data.previous_episode.slug}`}
+                                    href={`${data.prevEpisode.href}`}
                                     className="px-4 py-2 bg-blue-600 rounded"
                                 >
                                     ⬅ Sebelumnya
                                 </Link>
                             )}
 
-                            {data.has_next_episode && (
+                            {data.nextEpisode && (
                                 <Link
-                                    href={`/episode/${data.next_episode.slug}`}
+                                    href={`${data.nextEpisode.href}`}
                                     className="px-4 py-2 bg-blue-600 rounded"
                                 >
                                     Selanjutnya ➡
@@ -44,15 +44,15 @@ const Page = async ({ params }) => {
             </div>
 
             {/* Info Anime */}
-            <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800">
+            <div className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
                 <h2 className="text-2xl font-bold text-blue-400 mb-4">
                     🎬 Info Anime
                 </h2>
-                <p className="text-gray-300 mb-2">
+                <p className="text-gray-300 mb-3">
                     <span className="font-semibold text-white">Judul:</span>{" "}
                     {(() => {
                         try {
-                            const parts = data.anime.slug.split("/");
+                            const parts = data.title.split("/");
                             const lastPart = parts.filter(Boolean).pop();
                             return lastPart.replace(/-/g, " ");
                         } catch {
@@ -61,8 +61,12 @@ const Page = async ({ params }) => {
                     })()}
                 </p>
                 <p className="text-gray-300">
-                    <span className="font-semibold text-white">Episode:</span>{" "}
-                    {data.episode}
+                    <span className="font-semibold text-white">Direlease:</span>{" "}
+                    {data.releaseTime}
+                </p>
+                <p className="text-gray-300">
+                    <span className="font-semibold text-white">Credit:</span>{" "}
+                    {data.info.credit || "Tidak diketahui"}
                 </p>
             </div>
 
@@ -79,13 +83,16 @@ const Page = async ({ params }) => {
                         </h3>
 
                         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            {list.map((res) => (
+                            {list.map((res, resIndex) => (
                                 <div
-                                    key={res.resolution}
+                                    key={`${format}-${res.resolution}-${resIndex}`}
                                     className="bg-gray-800 p-4 rounded-xl border border-gray-700"
                                 >
+                                    <h2 className="text-lg font-bold text-blue-300 mb-2">
+                                        {res.title}
+                                    </h2>
                                     <h4 className="text-lg font-bold text-blue-300 mb-2">
-                                        {res.resolution}
+                                        {res.size}
                                     </h4>
 
                                     <div className="space-y-2">
@@ -96,7 +103,7 @@ const Page = async ({ params }) => {
                                                 target="_blank"
                                                 className="block bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-md text-sm text-center transition"
                                             >
-                                                {link.provider}
+                                                {link.title}
                                             </a>
                                         ))}
                                     </div>

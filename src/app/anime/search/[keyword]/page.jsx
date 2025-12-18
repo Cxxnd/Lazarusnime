@@ -4,14 +4,14 @@ import ButtonBack from "@/components/Navbar/ButtonBack";
 
 const Page = async ({ params }) => {
     try {
-        const { slug } = await params;
-        const decoded = decodeURIComponent(slug);
+        const { keyword } = await params;
+        const decoded = decodeURIComponent(keyword);
 
         // Ambil data dari API
         const data = await getAnime({ resource: `search/${decoded}` });
 
         // Pastikan hasilnya ada dan punya list
-        const results = data?.data || data?.results || [];
+        const results = data?.data?.animeList || data?.results || [];
 
         return (
             <section className="min-h-screen px-6 py-8 bg-gray-900 text-white">

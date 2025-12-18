@@ -33,8 +33,8 @@ export default function Ongoing() {
         fetchData();
     }, [page]);
 
-    const list = animeData?.data?.ongoingAnimeData || [];
-    const pagination = animeData?.data?.paginationData;
+    const list = animeData?.data?.animeList || [];
+    const pagination = animeData?.pagination;
 
     return (
         <div>
@@ -56,17 +56,17 @@ export default function Ongoing() {
                         <p className="text-gray-400">
                             Halaman{" "}
                             <span className="text-white font-semibold">
-                                {pagination.current_page}
+                                {pagination.currentPage}
                             </span>{" "}
                             dari{" "}
                             <span className="text-white font-semibold">
-                                {pagination.last_visible_page}
+                                {pagination.totalPages}
                             </span>
                         </p>
 
                         <Pagination
                             page={page}
-                            lastPage={pagination.last_visible_page}
+                            lastPage={pagination.totalPages}
                             setPage={setPage}
                         />
                     </div>

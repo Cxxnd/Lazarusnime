@@ -44,13 +44,13 @@ const Page = async ({ params }) => {
                                 <span className="font-medium text-gray-300">
                                     Rating:
                                 </span>{" "}
-                                {data.rating}
+                                {data.score}
                             </p>
                             <p>
                                 <span className="font-medium text-gray-300">
                                     Studio:
                                 </span>{" "}
-                                {data.studio}
+                                {data.studios}
                             </p>
                             <p>
                                 <span className="font-medium text-gray-300">
@@ -68,7 +68,7 @@ const Page = async ({ params }) => {
                                 <span className="font-medium text-gray-300">
                                     Episode:
                                 </span>{" "}
-                                {data.episode_count}
+                                {data.episodes || "ongoing"}
                             </p>
                             <p>
                                 <span className="font-medium text-gray-300">
@@ -80,25 +80,25 @@ const Page = async ({ params }) => {
                                 <span className="font-medium text-gray-300">
                                     Rilis:
                                 </span>{" "}
-                                {data.release_date}
+                                {data.aired}
                             </p>
                             <p>
                                 <span className="font-medium text-gray-300">
                                     Produser:
                                 </span>{" "}
-                                {data.produser}
+                                {data.producers}
                             </p>
                         </div>
 
                         {/* Genres */}
                         <div className="mt-4 flex flex-wrap gap-2">
-                            {data.genres.map((genre, index) => (
+                            {data?.genreList?.map((genre, index) => (
                                 <Link
                                     key={index}
-                                    href={`/genre/${genre.slug}`}
+                                    href={`${genre.href}`}
                                     className="px-3 py-1 text-sm bg-blue-700/30 hover:bg-blue-700/50 rounded-full transition"
                                 >
-                                    {genre.name}
+                                    {genre.title}
                                 </Link>
                             ))}
                         </div>
@@ -112,7 +112,7 @@ const Page = async ({ params }) => {
                     Sinopsis
                 </h2>
                 <p className="text-gray-300 leading-relaxed text-justify">
-                    {data.synopsis}
+                    {data.synopsis.paragraphs || "Sinopsis tidak tersedia."}
                 </p>
             </div>
 
@@ -122,19 +122,19 @@ const Page = async ({ params }) => {
                     Daftar Episode
                 </h2>
                 <ul className="space-y-2">
-                    {data.episode_lists.map((ep, index) => (
+                    {data.episodeList.map((ep, index) => (
                         <li
                             key={index}
                             className="flex justify-between items-center bg-gray-800/50 hover:bg-gray-800 p-3 rounded-lg transition"
                         >
                             <Link
-                                href={`/episode/${ep.slug}`}
+                                href={`${ep.href}`}
                                 className="font-medium hover:text-blue-400"
                             >
-                                {ep.episode}
+                                {ep.title}
                             </Link>
                             <span className="text-sm text-gray-400">
-                                Ep {ep.episode_number}
+                                Ep {ep.eps}
                             </span>
                         </li>
                     ))}
@@ -147,29 +147,29 @@ const Page = async ({ params }) => {
                     <h2 className="text-xl font-semibold text-blue-400 mb-2">
                         Batch
                     </h2>
+                    <p className="text-sm text-gray-400 mt-1">
+                        Title - {data.batch.title}
+                    </p>
                     <Link
-                        href={`/batch/${data.batch.slug}`}
+                        href={`${data.batch.href}`}
                         className="text-blue-400 hover:underline"
                     >
-                        {data.batch.slug}
+                        Download Batch Here
                     </Link>
-                    <p className="text-sm text-gray-400 mt-1">
-                        Diupload pada {data.batch.uploaded_at}
-                    </p>
                 </div>
             )}
 
             {/* Rekomendasi */}
-            {data.recommendations?.length > 0 && (
+            {data?.recommendedAnimeList?.length > 0 && (
                 <div className="mt-8">
                     <h2 className="text-xl font-semibold text-blue-400 mb-4">
                         Rekomendasi Anime
                     </h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                        {data.recommendations.map((rec, index) => (
+                        {data?.recommendedAnimeList?.map((rec, index) => (
                             <Link
                                 key={index}
-                                href={`/anime/${rec.slug}`}
+                                href={`${rec.href}`}
                                 className="group relative"
                             >
                                 <Image

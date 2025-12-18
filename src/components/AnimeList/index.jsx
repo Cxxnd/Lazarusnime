@@ -40,33 +40,32 @@ const AnimeList = ({ api, mode }) => {
 
     return (
         <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            {animeData.map((anime, index) => (
+            {animeData?.map((anime, index) => (
                 <Link
-                    href={`/anime/${
-                        anime.slug
-                            ?.split("/anime/")
-                            .pop()
-                            ?.replace(/\/+$/, "") || ""
-                    }`}
+                    href={`${anime.href || ""}`}
                     key={index}
-                    className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:bg-zinc-800 transition-all shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1"
+                    className="group relative bg-gray-900/60 border border-gray-800 hover:border-purple-600 rounded-2xl overflow-hidden shadow-md hover:shadow-purple-500/20 transition-all duration-500 hover:-translate-y-1"
                 >
                     {/* Gambar */}
-                    <div className="relative w-full aspect-[3/4] overflow-hidden">
+                    {/* Gambar */}
+                    <div className="relative w-full aspect-[2/3] overflow-hidden rounded-xl">
                         <Image
                             src={anime.poster}
                             alt={anime.title}
                             fill
-                            sizes="(max-width:768px) 100vw, 33vw"
+                            sizes="(max-width:768px) 50vw, (max-width:1024px) 33vw, 20vw"
                             unoptimized
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
+
+                        {/* Gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                        {/* Rating */}
-                        {anime.rating && (
-                            <div className="absolute top-2 left-2 bg-black/70 text-yellow-400 text-xs font-semibold px-2 py-1 rounded-lg flex items-center gap-1 backdrop-blur-sm">
-                                <Star className="w-3 h-3 text-yellow-400" />
-                                {anime.rating}
+
+                        {/* Rating - kiri atas FIX */}
+                        {(anime.rating || anime.score) && (
+                            <div className="absolute top-2 left-2 z-10 bg-black/80 text-yellow-400 text-xs font-semibold px-2 py-1 rounded-lg flex items-center gap-1 backdrop-blur-sm">
+                                <Star className="w-3 h-3" />
+                                {anime.rating || anime.score}
                             </div>
                         )}
                     </div>
@@ -80,11 +79,16 @@ const AnimeList = ({ api, mode }) => {
                         <div className="mt-2 text-xs text-gray-400 space-y-1">
                             <p>
                                 <span className="text-blue-400">
-                                    {anime.season || anime.release_day || "-"}
+                                    {anime.season ||
+                                        anime.release_day ||
+                                        anime.releaseDay ||
+                                        "-"}
                                 </span>{" "}
                                 •{" "}
-                                {anime.studio ||
+                                {anime.studios ||
                                     anime.newest_release_date ||
+                                    anime.latestReleaseDate ||
+                                    anime.lastReleaseDate ||
                                     "-"}
                             </p>
                             <p>
@@ -92,19 +96,23 @@ const AnimeList = ({ api, mode }) => {
                                 <span className="text-gray-300 font-medium">
                                     {anime.episode_count ||
                                         anime.current_episode ||
+                                        anime.episodes ||
+                                        anime.status ||
                                         "ongoing"}
                                 </span>
                             </p>
                             {/* Genre 3 pertama */}
                             <div className="flex flex-wrap gap-1">
-                                {anime.genres?.slice(0, 3).map((genre, i) => (
-                                    <span
-                                        key={i}
-                                        className="bg-zinc-800/70 text-gray-300 text-[10px] px-2 py-[2px] rounded-md"
-                                    >
-                                        {genre.name}
-                                    </span>
-                                ))}
+                                {anime.genreList
+                                    ?.slice(0, 3)
+                                    .map((genre, i) => (
+                                        <span
+                                            key={i}
+                                            className="bg-zinc-800/70 text-gray-300 text-[10px] px-2 py-[2px] rounded-md"
+                                        >
+                                            {genre.title}
+                                        </span>
+                                    ))}
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ const InputSearch = () => {
         }
 
         const encoded = encodeURIComponent(trimmedKeyword);
-        router.push(`/search/${encoded}`);
+        router.push(`/anime/search/${encoded}`);
     };
 
     const handleKeyDown = (event) => {

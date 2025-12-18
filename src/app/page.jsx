@@ -5,8 +5,10 @@ import { getAnime } from "@/libs/service-api";
 const Page = async () => {
     const animeHome = await getAnime({ resource: "home" });
 
-    const ongoingAnime = animeHome?.data?.ongoing_anime || [];
-    const completeAnime = animeHome?.data?.complete_anime || [];
+    const ongoingAnime = animeHome?.data?.ongoing.animeList || [];
+    const completeAnime = animeHome?.data?.completed.animeList || [];
+    const linkCompleteAnime = animeHome?.data?.completed.href || "/animeFull";
+    const linkOngoingAnime = animeHome?.data?.ongoing.href || "/ongoinganime";
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 px-6 py-10 text-white">
@@ -24,17 +26,20 @@ const Page = async () => {
             {/* Ongoing Anime */}
             <section className="mb-12">
                 <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-2xl font-semibold text-blue-400 border-b border-blue-700 pb-2">
+                    <Link
+                        href={linkOngoingAnime}
+                        className="text-2xl font-semibold text-blue-400 border-b border-blue-700 pb-2"
+                    >
                         🔥 Ongoing Anime
-                    </h2>
+                    </Link>
                 </div>
 
                 <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5">
                     {ongoingAnime.map((anime, index) => (
                         <Link
-                            href={`/anime/${anime.slug}`}
+                            href={`${anime.href}`}
                             key={`ongoing-${index}`}
-                            className="group relative bg-gray-900/60 border border-gray-800 hover:border-blue-600 rounded-2xl overflow-hidden shadow-md hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-1"
+                            className="group relative bg-gray-900/60 border border-gray-800 hover:border-purple-600 rounded-2xl overflow-hidden shadow-md hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-1"
                         >
                             {/* Poster */}
                             <div className="relative aspect-[3/4] overflow-hidden">
@@ -66,7 +71,13 @@ const Page = async () => {
                     Lihat Jadwal Rilis
                 </Link>
                 <Link
-                    href="/ongoinganime"
+                    href="/anime/complete-anime"
+                    className="text-sm hover:text-purple-300 transition-colors duration-300 bg-blue-600 px-2 py-1 rounded-md"
+                >
+                    Complete Anime
+                </Link>
+                <Link
+                    href="/anime/ongoing-anime"
                     className="text-sm hover:text-purple-300 transition-colors duration-300 bg-blue-600 px-2 py-1 rounded-md"
                 >
                     Ongoing Anime
@@ -78,7 +89,7 @@ const Page = async () => {
                     Anime Full List
                 </Link>
                 <Link
-                    href="/genre"
+                    href="/anime/genre"
                     className="text-sm hover:text-purple-300 transition-colors duration-300 bg-blue-600 px-2 py-1 rounded-md"
                 >
                     Lihat Genre
@@ -88,15 +99,18 @@ const Page = async () => {
             {/* Complete Anime */}
             <section>
                 <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-2xl font-semibold text-purple-400 border-b border-purple-700 pb-2">
+                    <Link
+                        href={linkCompleteAnime}
+                        className="text-2xl font-semibold text-purple-400 border-b border-purple-700 pb-2"
+                    >
                         ✅ Complete Anime
-                    </h2>
+                    </Link>
                 </div>
 
                 <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5">
                     {completeAnime.map((anime, index) => (
                         <Link
-                            href={`/anime/${anime.slug}`}
+                            href={`${anime.href}`}
                             key={`complete-${index}`}
                             className="group relative bg-gray-900/60 border border-gray-800 hover:border-purple-600 rounded-2xl overflow-hidden shadow-md hover:shadow-purple-500/20 transition-all duration-500 hover:-translate-y-1"
                         >
@@ -114,7 +128,7 @@ const Page = async () => {
 
                             {/* Info */}
                             <div className="p-3">
-                                <h3 className="text-sm font-semibold line-clamp-2 text-white group-hover:text-purple-400 transition-colors duration-300">
+                                <h3 className="text-sm font-semibold line-clamp-2 text-white group-hover:text-blue-400 transition-colors duration-300">
                                     {anime.title}
                                 </h3>
                             </div>

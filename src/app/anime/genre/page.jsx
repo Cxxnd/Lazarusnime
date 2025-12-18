@@ -4,6 +4,7 @@ import ButtonBack from "@/components/Navbar/ButtonBack";
 
 const Page = async () => {
     const genreData = await getAnime({ resource: "genre" });
+    const data = genreData?.data || [];
 
     return (
         <section className="px-6 py-8 min-h-screen bg-gray-900 text-white">
@@ -12,15 +13,15 @@ const Page = async () => {
                 Daftar Genre Anime
             </h1>
 
-            {genreData?.data?.length > 0 ? (
+            {data?.genreList.length > 0 ? (
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    {genreData.data.map((genre, index) => (
+                    {data.genreList.map((genre, index) => (
                         <Link
                             key={index}
-                            href={`/genre/${genre.slug}`}
+                            href={`${genre.href}`}
                             className="bg-gray-800 hover:bg-purple-600 transition-all rounded-lg p-4 text-center font-semibold capitalize shadow-md hover:shadow-lg"
                         >
-                            {genre.name}
+                            {genre.title}
                         </Link>
                     ))}
                 </div>

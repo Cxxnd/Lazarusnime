@@ -7,24 +7,28 @@ import ButtonBack from "@/components/Navbar/ButtonBack";
 import Pagination from "@/components/Utilities/Pagination";
 import AnimeList from "@/components/AnimeList";
 
-const CompletePage = () => {
+const GenreDetailPage = ({ params }) => {
+    const { slug } = React.use(params);
     const searchParams = useSearchParams();
-    const currentPage = parseInt(searchParams.get("page")) || 1;
-
-    const [page, setPage] = useState(currentPage);
+    const [page, setPage] = useState(parseInt(searchParams.get("page")) || 1);
     const [animeData, setAnimeData] = useState({});
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const newPage = parseInt(searchParams.get("page")) || 1;
+        setPage(newPage);
+    }, [searchParams]);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
                 const res = await getAnime({
-                    resource: `complete-anime/${page}`,
+                    resource: `genre/${slug}?page=${page}`,
                 });
                 setAnimeData(res || {});
             } catch (error) {
-                console.error("❌ Error fetching complete anime:", error);
+                console.error("Error fetching data:", error);
                 setAnimeData({});
             } finally {
                 setLoading(false);
@@ -32,33 +36,38 @@ const CompletePage = () => {
         };
 
         fetchData();
+    }, [page, slug]);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }, [page]);
+
+    const animeList = animeData?.data?.animeList || [];
+    const totalPages = animeData?.pagination?.totalPages || 1;
 
     return (
         <div className="p-6 max-w-7xl mx-auto">
-            {/* Header */}
             <div className="flex justify-between items-center mb-8">
                 <ButtonBack />
-                <h1 className="text-3xl font-extrabold text-white tracking-wide text-center sm:text-left mt-4 sm:mt-0">
-                    ✅ <span className="text-purple-400">Complete Anime</span>
+                <h1 className="text-3xl font-extrabold capitalize text-white tracking-wide text-center sm:text-left mt-4 sm:mt-0">
+                    Genre:{" "}
+                    <span className="text-blue-400">
+                        {slug.replace(/-/g, " ")}
+                    </span>
                 </h1>
             </div>
 
-            {/* Loading State */}
             {loading ? (
                 <div className="text-center py-20 text-gray-400">
-                    Sedang memuat data anime...
+                    Memuat data...
                 </div>
-            ) : !animeData?.data?.anime || animeData.data.anime.length === 0 ? (
+            ) : animeList.length === 0 ? (
                 <div className="text-center py-20 text-gray-400">
-                    Tidak ada anime yang ditemukan.
+                    Tidak ada anime ditemukan di genre ini
                 </div>
             ) : (
                 <>
-                    {/* List Anime */}
-                    <AnimeList api={animeData} />
-
-                    {/* Pagination */}
+                    <AnimeList api={animeList} />
                     <div className="flex justify-center items-center mt-10 flex-col gap-2">
                         <p className="text-gray-400">
                             Halaman{" "}
@@ -67,16 +76,12 @@ const CompletePage = () => {
                             </span>{" "}
                             dari{" "}
                             <span className="text-white font-semibold">
-                                {animeData?.data?.pagination
-                                    ?.last_visible_page || 1}
+                                {totalPages}
                             </span>
                         </p>
                         <Pagination
                             page={page}
-                            lastPage={
-                                animeData?.data?.pagination
-                                    ?.last_visible_page || 1
-                            }
+                            lastPage={totalPages}
                             setPage={setPage}
                         />
                     </div>
@@ -86,4 +91,4 @@ const CompletePage = () => {
     );
 };
 
-export default CompletePage;
+export default GenreDetailPage;

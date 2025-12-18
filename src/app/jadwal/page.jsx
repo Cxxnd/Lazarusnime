@@ -26,13 +26,13 @@ const Jadwal = async () => {
                         {dayGroup.anime_list?.map((anime, index) => (
                             <Link
                                 key={index}
-                                href={`/anime/${anime.slug}`}
-                                className="group block rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-blue-500/60 transition"
+                                href={`${anime.url}`}
+                                className="group block rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-purple-600/60 transition"
                             >
                                 <div className="relative aspect-[3/4] overflow-hidden">
                                     <Image
                                         src={anime.poster}
-                                        alt={anime.anime_name}
+                                        alt={anime.title}
                                         fill
                                         unoptimized
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -42,7 +42,7 @@ const Jadwal = async () => {
 
                                 <div className="p-2">
                                     <h3 className="text-sm font-medium text-white line-clamp-2 group-hover:text-blue-400 transition">
-                                        {anime.anime_name}
+                                        {anime.title}
                                     </h3>
                                 </div>
                             </Link>

@@ -31,8 +31,10 @@ const Page = async ({ params }) => {
                 />
 
                 {/* Info */}
-                <div className="flex-1 space-y-2">
-                    <h1 className="text-3xl font-bold">{data.title}</h1>
+                <div className="flex-1 space-y-2 border border-gray-800 p-4 rounded-2xl bg-gray-900/50">
+                    <h1 className="text-3xl font-bold text-white">
+                        {data.title}
+                    </h1>
                     <p className="text-gray-400 italic">{data.japanese}</p>
 
                     <ul className="text-sm text-gray-300 space-y-1 mt-2">
@@ -40,7 +42,7 @@ const Page = async ({ params }) => {
                             <b>Type:</b> {data.type}
                         </li>
                         <li>
-                            <b>Episodes:</b> {data.episodes}
+                            <b>Episodes:</b> {data.episodes || "Ongoing"}
                         </li>
                         <li>
                             <b>Duration:</b> {data.duration}
@@ -63,9 +65,9 @@ const Page = async ({ params }) => {
                     <div className="flex flex-wrap gap-2 mt-3">
                         {data.genreList?.map((genre, i) => (
                             <Link
-                                href={`/genre/${genre.genreId}`}
+                                href={`/anime/genre/${genre.genreId}`}
                                 key={i}
-                                className="px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-xs"
+                                className="px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-xs text-white hover:bg-blue-600 hover:border-blue-500 transition"
                             >
                                 {genre.title}
                             </Link>
