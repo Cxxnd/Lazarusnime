@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAnime } from "@/libs/service-api";
 import ButtonBack from "@/components/Navbar/ButtonBack";
+export const dynamic = "force-dynamic";
 
 const Page = async () => {
     const genreData = await getAnime({ resource: "genre" });
