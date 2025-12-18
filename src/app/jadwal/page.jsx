@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAnime } from "@/libs/service-api";
+export const dynamic = "force-dynamic";
 
 const Jadwal = async () => {
     const res = await getAnime({ resource: "schedule" });
