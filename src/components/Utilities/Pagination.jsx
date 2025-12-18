@@ -31,7 +31,7 @@ const Pagination = ({ page, lastPage, setPage }) => {
     };
 
     return (
-        <div className="flex justify-center mt-6 space-x-2 text-sm text-white">
+        <div className="flex justify-center mt-6 space-x-2 text-sm text-white bg-black">
             <button
                 onClick={() => goToPage(page - 1)}
                 disabled={page === 1}
@@ -49,7 +49,7 @@ const Pagination = ({ page, lastPage, setPage }) => {
                     <button
                         key={index}
                         onClick={() => goToPage(num)}
-                        className={`px-3 py-1 border border-gray-700 rounded transition ${
+                        className={`px-3 py-1 border border-gray-700 rounded transition text-white ${
                             page === num
                                 ? "bg-blue-600 text-white border-blue-500"
                                 : "hover:bg-blue-800"

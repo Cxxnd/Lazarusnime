@@ -46,7 +46,7 @@ const GenreDetailPage = ({ params }) => {
     const totalPages = animeData?.pagination?.totalPages || 1;
 
     return (
-        <div className="p-6 max-w-7xl mx-auto">
+        <div className="p-4 max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-8">
                 <ButtonBack />
                 <h1 className="text-3xl font-extrabold capitalize text-white tracking-wide text-center sm:text-left mt-4 sm:mt-0">
@@ -68,7 +68,7 @@ const GenreDetailPage = ({ params }) => {
             ) : (
                 <>
                     <AnimeList api={animeList} />
-                    <div className="flex justify-center items-center mt-10 flex-col gap-2">
+                    <div className="flex justify-center items-center gap-2 py-4 flex-col bg-black text-white">
                         <p className="text-gray-400">
                             Halaman{" "}
                             <span className="text-white font-semibold">

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import ButtonBack from "@/components/Navbar/ButtonBack";
 import Link from "next/link";
 import { Star } from "lucide-react";
 
@@ -9,7 +8,6 @@ const AnimeList = ({ api, mode }) => {
     if (mode === "az") {
         return (
             <div className="space-y-10">
-                <ButtonBack />
                 {animeData.map((group, groupIndex) => (
                     <div key={groupIndex}>
                         <h2 className="text-2xl font-bold mb-4">
@@ -39,7 +37,7 @@ const AnimeList = ({ api, mode }) => {
     }
 
     return (
-        <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 bg-black min-h-screen p-4">
             {animeData?.map((anime, index) => (
                 <Link
                     href={`${anime.href || ""}`}

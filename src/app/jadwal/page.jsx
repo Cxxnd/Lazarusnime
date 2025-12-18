@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAnime } from "@/libs/service-api";
 export const dynamic = "force-dynamic";
+import ButtonBack from "@/components/Navbar/ButtonBack";
 
 const Jadwal = async () => {
     const res = await getAnime({ resource: "schedule" });
@@ -16,7 +17,8 @@ const Jadwal = async () => {
     }
 
     return (
-        <div className="space-y-12">
+        <div className="space-y-12 p-4 max-w-7xl mx-auto">
+            <ButtonBack />
             {jadwal.map((dayGroup, dayIndex) => (
                 <section key={dayIndex} className="space-y-4">
                     <h2 className="text-2xl font-bold text-white border-l-4 border-blue-500 pl-3">
@@ -42,7 +44,7 @@ const Jadwal = async () => {
                                 </div>
 
                                 <div className="p-2">
-                                    <h3 className="text-sm font-medium text-white line-clamp-2 group-hover:text-blue-400 transition">
+                                    <h3 className="text-sm font-bold text-white line-clamp-2 group-hover:text-blue-400 transition">
                                         {anime.title}
                                     </h3>
                                 </div>

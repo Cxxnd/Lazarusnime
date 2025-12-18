@@ -2,6 +2,7 @@
 
 import AnimeList from "@/components/AnimeList";
 import Pagination from "@/components/Utilities/Pagination";
+import ButtonBack from "@/components/Navbar/ButtonBack";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { getAnime } from "@/libs/service-api";
@@ -47,12 +48,13 @@ export default function Complete() {
                     Tidak ada anime yang ditemukan.
                 </div>
             ) : (
-                <>
+                <div className="p-4 max-w-7xl mx-auto">
+                    <ButtonBack />
                     {/* LIST */}
                     <AnimeList api={list} />
 
                     {/* PAGINATION */}
-                    <div className="flex justify-center items-center mt-10 flex-col gap-2">
+                    <div className="flex justify-center items-center gap-2 py-4 flex-col bg-black text-white">
                         <p className="text-gray-400">
                             Halaman{" "}
                             <span className="text-white font-semibold">
@@ -70,7 +72,7 @@ export default function Complete() {
                             setPage={setPage}
                         />
                     </div>
-                </>
+                </div>
             )}
         </div>
     );

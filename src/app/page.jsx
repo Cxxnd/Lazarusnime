@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAnime } from "@/libs/service-api";
+import { Star } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 const Page = async () => {
@@ -59,6 +60,32 @@ const Page = async () => {
                                 <h3 className="text-sm font-semibold line-clamp-2 text-white group-hover:text-blue-400 transition-colors duration-300">
                                     {anime.title}
                                 </h3>
+                            </div>
+                            <div className="mt-2 text-xs text-gray-400 space-y-1 px-3 pb-3">
+                                <p>
+                                    <span className="text-blue-400">
+                                        {anime.season ||
+                                            anime.release_day ||
+                                            anime.releaseDay ||
+                                            "-"}
+                                    </span>{" "}
+                                    •{" "}
+                                    {anime.studios ||
+                                        anime.newest_release_date ||
+                                        anime.latestReleaseDate ||
+                                        anime.lastReleaseDate ||
+                                        "-"}
+                                </p>
+                                <p>
+                                    Ep:{" "}
+                                    <span className="text-gray-300 font-medium">
+                                        {anime.episode_count ||
+                                            anime.current_episode ||
+                                            anime.episodes ||
+                                            anime.status ||
+                                            "ongoing"}
+                                    </span>
+                                </p>
                             </div>
                         </Link>
                     ))}
@@ -125,6 +152,14 @@ const Page = async () => {
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                                {/* Rating - kiri atas FIX */}
+                                {(anime.rating || anime.score) && (
+                                    <div className="absolute top-2 left-2 z-10 bg-black/80 text-yellow-400 text-xs font-semibold px-2 py-1 rounded-lg flex items-center gap-1 backdrop-blur-sm">
+                                        <Star className="w-3 h-3" />
+                                        {anime.rating || anime.score}
+                                    </div>
+                                )}
                             </div>
 
                             {/* Info */}
@@ -132,6 +167,32 @@ const Page = async () => {
                                 <h3 className="text-sm font-semibold line-clamp-2 text-white group-hover:text-blue-400 transition-colors duration-300">
                                     {anime.title}
                                 </h3>
+                            </div>
+                            <div className="mt-2 text-xs text-gray-400 space-y-1 px-3 pb-3">
+                                <p>
+                                    <span className="text-blue-400">
+                                        {anime.season ||
+                                            anime.release_day ||
+                                            anime.releaseDay ||
+                                            "-"}
+                                    </span>{" "}
+                                    •{" "}
+                                    {anime.studios ||
+                                        anime.newest_release_date ||
+                                        anime.latestReleaseDate ||
+                                        anime.lastReleaseDate ||
+                                        "-"}
+                                </p>
+                                <p>
+                                    Ep:{" "}
+                                    <span className="text-gray-300 font-medium">
+                                        {anime.episode_count ||
+                                            anime.current_episode ||
+                                            anime.episodes ||
+                                            anime.status ||
+                                            "ongoing"}
+                                    </span>
+                                </p>
                             </div>
                         </Link>
                     ))}

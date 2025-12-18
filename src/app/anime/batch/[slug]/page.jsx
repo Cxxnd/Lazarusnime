@@ -16,7 +16,7 @@ const Page = async ({ params }) => {
     }
 
     return (
-        <main className="max-w-5xl mx-auto p-6 space-y-8">
+        <main className="max-w-5xl mx-auto p-4 space-y-8">
             <ButtonBack />
             {/* Header Anime */}
             <section className="flex flex-col md:flex-row gap-6 items-start">
