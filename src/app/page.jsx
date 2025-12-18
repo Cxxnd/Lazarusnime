@@ -91,7 +91,7 @@ const Page = async () => {
                     ))}
                 </div>
             </section>
-            <div className="flex flex-row justify-center items-center mt-4 mb-12 sm:mb-6 gap-2">
+            <div className="flex flex-row justify-center items-center mt-4 mb-12 sm:mb-6 gap-2 md:text-xl text-sm">
                 <Link
                     href="/jadwal"
                     className="text-sm hover:text-purple-300 transition-colors duration-300 bg-blue-600 px-2 py-1 rounded-md"
