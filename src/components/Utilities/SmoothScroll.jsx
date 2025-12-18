@@ -21,5 +21,5 @@ export default function SmoothScrollProvider({ children }) {
         return () => lenis.destroy();
     }, []);
 
-    return <div className="min-h-screen bg-black">{children}</div>;
+    return <div className="min-h-screen bg-gray-900">{children}</div>;
 }

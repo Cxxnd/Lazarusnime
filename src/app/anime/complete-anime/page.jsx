@@ -54,7 +54,7 @@ export default function Complete() {
                     <AnimeList api={list} />
 
                     {/* PAGINATION */}
-                    <div className="flex justify-center items-center gap-2 py-4 flex-col bg-black text-white">
+                    <div className="flex justify-center items-center gap-2 py-4 flex-col bg-gray-900 text-white">
                         <p className="text-gray-400">
                             Halaman{" "}
                             <span className="text-white font-semibold">

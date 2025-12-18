@@ -19,7 +19,7 @@ const AnimeList = ({ api, mode }) => {
                                 <Link
                                     key={index}
                                     href={anime.href}
-                                    className="block rounded-lg bg-gray-900 hover:bg-gray-800 transition p-3"
+                                    className="block rounded-lg bg-gray-950 hover:bg-gray-800 transition p-3"
                                 >
                                     <p className="text-sm font-semibold line-clamp-2">
                                         {anime.title}
@@ -37,7 +37,7 @@ const AnimeList = ({ api, mode }) => {
     }
 
     return (
-        <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 bg-black min-h-screen p-4">
+        <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 bg-gray-900 min-h-screen p-4">
             {animeData?.map((anime, index) => (
                 <Link
                     href={`${anime.href || ""}`}

@@ -31,7 +31,7 @@ const Pagination = ({ page, lastPage, setPage }) => {
     };
 
     return (
-        <div className="flex justify-center mt-6 space-x-2 text-sm text-white bg-black">
+        <div className="flex justify-center mt-6 space-x-2 text-sm text-white bg-gray-900">
             <button
                 onClick={() => goToPage(page - 1)}
                 disabled={page === 1}

@@ -20,7 +20,7 @@ const Page = async () => {
                         <Link
                             key={index}
                             href={`${genre.href}`}
-                            className="bg-gray-800 hover:bg-purple-600 transition-all rounded-lg p-4 text-center font-semibold capitalize shadow-md hover:shadow-lg"
+                            className="border border-gray-800 hover:border-blue-600 bg-gray-800 hover:bg-purple-600 transition-all rounded-lg p-4 text-center font-semibold capitalize shadow-md hover:shadow-lg"
                         >
                             {genre.title}
                         </Link>
