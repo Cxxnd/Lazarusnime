@@ -18,7 +18,6 @@ const geistMono = Geist_Mono({
 export const metadata = {
     title: "LazarusNime",
     description: "Stream Anime Gratis dan Cepat",
-    themeColor: "#111827",
 };
 
 export default function RootLayout({ children }) {
