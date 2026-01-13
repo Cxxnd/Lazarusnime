@@ -15,6 +15,13 @@ const Navbar = () => {
 
                 {/* Search Input */}
                 <InputSearch className="w-full md:w-auto" />
+
+                <Link
+                    href="/maintenece"
+                    className="flex items-center gap-4 bg-gray-400/20 px-4 py-2 rounded-full"
+                >
+                    Login
+                </Link>
             </div>
         </header>
     );
