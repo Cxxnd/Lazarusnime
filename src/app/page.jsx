@@ -39,7 +39,7 @@ const Page = async () => {
                 <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5">
                     {ongoingAnime.map((anime, index) => (
                         <Link
-                            href={`${anime.href}`}
+                            href={`/anime/${anime.animeId}`}
                             key={`ongoing-${index}`}
                             className="group relative bg-gray-900/60 border border-gray-800 hover:border-purple-600 rounded-2xl overflow-hidden shadow-md hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-1"
                         >
@@ -99,13 +99,13 @@ const Page = async () => {
                     Lihat Jadwal Rilis
                 </Link>
                 <Link
-                    href="/anime/complete-anime"
+                    href="/complete-anime"
                     className="text-sm hover:text-purple-300 transition-colors duration-300 bg-blue-600 px-2 py-1 rounded-md"
                 >
                     Complete Anime
                 </Link>
                 <Link
-                    href="/anime/ongoing-anime"
+                    href="/ongoing-anime"
                     className="text-sm hover:text-purple-300 transition-colors duration-300 bg-blue-600 px-2 py-1 rounded-md"
                 >
                     Ongoing Anime
@@ -117,7 +117,7 @@ const Page = async () => {
                     Anime Full List
                 </Link>
                 <Link
-                    href="/anime/genre"
+                    href="/genre"
                     className="text-sm hover:text-purple-300 transition-colors duration-300 bg-blue-600 px-2 py-1 rounded-md"
                 >
                     Lihat Genre
@@ -138,7 +138,7 @@ const Page = async () => {
                 <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5">
                     {completeAnime.map((anime, index) => (
                         <Link
-                            href={`${anime.href}`}
+                            href={`/anime/${anime.animeId}`}
                             key={`complete-${index}`}
                             className="group relative bg-gray-900/60 border border-gray-800 hover:border-purple-600 rounded-2xl overflow-hidden shadow-md hover:shadow-purple-500/20 transition-all duration-500 hover:-translate-y-1"
                         >

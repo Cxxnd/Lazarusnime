@@ -18,7 +18,7 @@ const AnimeList = ({ api, mode }) => {
                             {group.animeList.map((anime, index) => (
                                 <Link
                                     key={index}
-                                    href={anime.href}
+                                    href={`/anime/${anime.animeId}`}
                                     className="block rounded-lg bg-gray-950 hover:bg-gray-800 transition p-3"
                                 >
                                     <p className="text-sm font-semibold line-clamp-2">
@@ -40,7 +40,7 @@ const AnimeList = ({ api, mode }) => {
         <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 bg-gray-900 min-h-screen p-4">
             {animeData?.map((anime, index) => (
                 <Link
-                    href={`${anime.href || ""}`}
+                    href={`/anime/${anime.animeId}`}
                     key={index}
                     className="group relative bg-gray-900/60 border border-gray-800 hover:border-purple-600 rounded-2xl overflow-hidden shadow-md hover:shadow-purple-500/20 transition-all duration-500 hover:-translate-y-1"
                 >

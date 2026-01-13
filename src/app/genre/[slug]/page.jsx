@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { getAnime } from "@/libs/service-api";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 import Pagination from "@/components/Utilities/Pagination";
 import AnimeList from "@/components/AnimeList";
+import Loading from "@/components/Utilities/loading";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const GenreDetailPage = ({ params }) => {
     const { slug } = React.use(params);
@@ -13,6 +14,13 @@ const GenreDetailPage = ({ params }) => {
     const [page, setPage] = useState(parseInt(searchParams.get("page")) || 1);
     const [animeData, setAnimeData] = useState({});
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!searchParams.get("page")) {
+            router.replace("?page=1", { scroll: false });
+        }
+    }, [searchParams, router]);
 
     useEffect(() => {
         const newPage = parseInt(searchParams.get("page")) || 1;
@@ -58,9 +66,7 @@ const GenreDetailPage = ({ params }) => {
             </div>
 
             {loading ? (
-                <div className="text-center py-20 text-gray-400">
-                    Memuat data...
-                </div>
+                <Loading />
             ) : animeList.length === 0 ? (
                 <div className="text-center py-20 text-gray-400">
                     Tidak ada anime ditemukan di genre ini

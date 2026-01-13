@@ -3,18 +3,26 @@
 import AnimeList from "@/components/AnimeList";
 import Pagination from "@/components/Utilities/Pagination";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { getAnime } from "@/libs/service-api";
 import ButtonBack from "@/components/Navbar/ButtonBack";
+import Loading from "@/components/Utilities/loading";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Ongoing() {
     const searchParams = useSearchParams();
     const currentPage = Number(searchParams.get("page")) || 1;
-
     const [page, setPage] = useState(currentPage);
     const [animeData, setAnimeData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
+    useEffect(() => {
+        if (!searchParams.get("page")) {
+            router.replace("?page=1", { scroll: false });
+        }
+    }, [searchParams, router]);
+
+    // Fetch Effect
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -34,15 +42,22 @@ export default function Ongoing() {
         fetchData();
     }, [page]);
 
+    useEffect(() => {
+        const newPage = Number(searchParams.get("page")) || 1;
+        setPage(newPage);
+    }, [searchParams]);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [page]);
+
     const list = animeData?.data?.animeList || [];
     const pagination = animeData?.pagination;
 
     return (
         <div>
             {loading ? (
-                <div className="text-center py-20 text-gray-400">
-                    Sedang memuat data anime...
-                </div>
+                <Loading />
             ) : list.length === 0 ? (
                 <div className="text-center py-20 text-gray-400">
                     Tidak ada anime yang ditemukan.

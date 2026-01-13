@@ -29,7 +29,7 @@ const Jadwal = async () => {
                         {dayGroup.anime_list?.map((anime, index) => (
                             <Link
                                 key={index}
-                                href={`${anime.url}`}
+                                href={`/anime/${anime.slug}`}
                                 className="group block rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-purple-600/60 transition"
                             >
                                 <div className="relative aspect-[3/4] overflow-hidden">

@@ -19,7 +19,7 @@ const Page = async () => {
                     {data.genreList.map((genre, index) => (
                         <Link
                             key={index}
-                            href={`${genre.href}`}
+                            href={`/genre/${genre.genreId}`}
                             className="border border-gray-800 hover:border-blue-600 bg-gray-800 hover:bg-purple-600 transition-all rounded-lg p-4 text-center font-semibold capitalize shadow-md hover:shadow-lg"
                         >
                             {genre.title}

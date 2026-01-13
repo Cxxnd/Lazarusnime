@@ -112,10 +112,10 @@ const Page = async ({ params }) => {
                             {data?.genreList?.map((genre, index) => (
                                 <Link
                                     key={index}
-                                    href={`${genre.href}`}
+                                    href={`/genre/${genre.genreId}`}
                                     className="px-3 py-1 text-sm bg-blue-700/30 hover:bg-blue-700/50 rounded-full transition"
                                 >
-                                    {genre.title}
+                                    {genre.title || genre.genreId}
                                 </Link>
                             ))}
                         </div>
@@ -145,7 +145,7 @@ const Page = async ({ params }) => {
                             className="flex justify-between items-center bg-gray-800/50 hover:bg-gray-800 p-3 rounded-lg transition"
                         >
                             <Link
-                                href={`${ep.href}`}
+                                href={`/episode/${ep.episodeId}`}
                                 className="font-medium hover:text-blue-400"
                             >
                                 {ep.title}
@@ -168,7 +168,7 @@ const Page = async ({ params }) => {
                         Title - {data.batch.title}
                     </p>
                     <Link
-                        href={`${data.batch.href}`}
+                        href={`/batch/${data.batch.batchId}`}
                         className="text-blue-400 hover:underline"
                     >
                         Download Batch Here
@@ -186,7 +186,7 @@ const Page = async ({ params }) => {
                         {data?.recommendedAnimeList?.map((rec, index) => (
                             <Link
                                 key={index}
-                                href={`${rec.href}`}
+                                href={`/anime/${rec.animeId}`}
                                 className="group relative"
                             >
                                 <Image

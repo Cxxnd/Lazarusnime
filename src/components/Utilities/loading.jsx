@@ -1,5 +1,5 @@
 "use client";
-import "../../../../components/css/loading.css";
+import "@/components/css/loading.css";
 import { useEffect } from "react";
 
 const Loading = () => {

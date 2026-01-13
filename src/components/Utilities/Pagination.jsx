@@ -1,7 +1,20 @@
 "use client";
-const Pagination = ({ page, lastPage, setPage }) => {
+
+import { useRouter, useSearchParams } from "next/navigation";
+
+const Pagination = ({ page, lastPage }) => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
     const goToPage = (num) => {
-        if (num >= 1 && num <= lastPage) setPage(num);
+        if (num < 1 || num > lastPage) return;
+
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("page", num);
+
+        router.push(`?${params.toString()}`, {
+            scroll: true,
+        });
     };
 
     const pagesToShow = () => {
@@ -18,9 +31,7 @@ const Pagination = ({ page, lastPage, setPage }) => {
             const start = Math.max(2, page - 1);
             const end = Math.min(lastPage - 1, page + 1);
 
-            for (let i = start; i <= end; i++) {
-                pages.push(i);
-            }
+            for (let i = start; i <= end; i++) pages.push(i);
 
             if (page < lastPage - 2) pages.push("...");
 
@@ -35,24 +46,24 @@ const Pagination = ({ page, lastPage, setPage }) => {
             <button
                 onClick={() => goToPage(page - 1)}
                 disabled={page === 1}
-                className="px-3 py-1 border border-blue-700 rounded disabled:opacity-50 hover:bg-gray-800 text-white"
+                className="px-3 py-1 border border-blue-700 rounded disabled:opacity-50 hover:bg-gray-800"
             >
                 Prev
             </button>
 
             {pagesToShow().map((num, index) =>
                 num === "..." ? (
-                    <span key={index} className="px-2 text-white">
+                    <span key={index} className="px-2">
                         ...
                     </span>
                 ) : (
                     <button
                         key={index}
                         onClick={() => goToPage(num)}
-                        className={`px-3 py-1 border border-gray-700 rounded transition text-white ${
+                        className={`px-3 py-1 border rounded transition ${
                             page === num
-                                ? "bg-blue-600 text-white border-blue-500"
-                                : "hover:bg-blue-800"
+                                ? "bg-blue-600 border-blue-500"
+                                : "border-gray-700 hover:bg-blue-800"
                         }`}
                     >
                         {num}
@@ -63,11 +74,12 @@ const Pagination = ({ page, lastPage, setPage }) => {
             <button
                 onClick={() => goToPage(page + 1)}
                 disabled={page === lastPage}
-                className="px-3 py-1 border border-blue-700 rounded disabled:opacity-50 hover:bg-gray-800 text-white"
+                className="px-3 py-1 border border-blue-700 rounded disabled:opacity-50 hover:bg-gray-800"
             >
                 Next
             </button>
         </div>
     );
 };
+
 export default Pagination;

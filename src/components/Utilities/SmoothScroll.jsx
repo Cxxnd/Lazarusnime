@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import ScrollToTop from "./ScrollToTop";
 
 export default function SmoothScrollProvider({ children }) {
     useEffect(() => {
@@ -22,7 +23,8 @@ export default function SmoothScrollProvider({ children }) {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-900 overflow-x-hidden">
+        <div className="min-h-screen bg-gray-900 overflow-x-hidden overflow-hidden">
+            <ScrollToTop />
             {children}
         </div>
     );

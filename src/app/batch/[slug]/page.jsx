@@ -48,7 +48,7 @@ const Page = async ({ params }) => {
                             <b>Duration:</b> {data.duration}
                         </li>
                         <li>
-                            <b>Score:</b> ⭐ {data.score.value}
+                            <b>Score:</b> ⭐ {data.score}
                         </li>
                         <li>
                             <b>Studios:</b> {data.studios}
@@ -65,7 +65,7 @@ const Page = async ({ params }) => {
                     <div className="flex flex-wrap gap-2 mt-3">
                         {data.genreList?.map((genre, i) => (
                             <Link
-                                href={`/anime/genre/${genre.genreId}`}
+                                href={`/genre/${genre.genreId}`}
                                 key={i}
                                 className="px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-xs text-white hover:bg-blue-600 hover:border-blue-500 transition"
                             >
