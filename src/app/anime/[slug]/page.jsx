@@ -1,12 +1,11 @@
-import { getAnime } from "@/libs/service-api";
+import { getAnimeDetail } from "@/services/anime.detail";
 import Image from "next/image";
 import Link from "next/link";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 
 const Page = async ({ params }) => {
     const { slug } = await params;
-    const anime = await getAnime({ resource: `anime/${slug}` });
-    const data = anime?.data;
+    const data = await getAnimeDetail(slug);
 
     if (!data)
         return (
@@ -42,25 +41,7 @@ const Page = async ({ params }) => {
                                 <span className="font-medium text-gray-300">
                                     Rating:
                                 </span>{" "}
-                                {Array.isArray(data.score)
-                                    ? data.score[0]?.value ?? "-"
-                                    : data.score?.value ?? "-"}
-                            </p>
-
-                            <p>
-                                <span className="font-medium text-gray-300">
-                                    User:
-                                </span>{" "}
-                                {Array.isArray(data.score)
-                                    ? data.score[0]?.users ?? "-"
-                                    : data.score?.users ?? "-"}
-                            </p>
-
-                            <p>
-                                <span className="font-medium text-gray-300">
-                                    User:
-                                </span>{" "}
-                                {data.score?.users}
+                                {data.score || "-"}
                             </p>
 
                             <p>
@@ -109,7 +90,7 @@ const Page = async ({ params }) => {
 
                         {/* Genres */}
                         <div className="mt-4 flex flex-wrap gap-2">
-                            {data?.genreList?.map((genre, index) => (
+                            {data?.genres?.map((genre, index) => (
                                 <Link
                                     key={index}
                                     href={`/genre/${genre.genreId}`}
@@ -128,7 +109,7 @@ const Page = async ({ params }) => {
                 <h2 className="text-xl font-semibold text-blue-400 mb-2">
                     Sinopsis
                 </h2>
-                {data.synopsis.paragraphs.map((text, index) => (
+                {data.synopsis.map((text, index) => (
                     <p key={index}>{text}</p>
                 ))}
             </div>
@@ -139,7 +120,7 @@ const Page = async ({ params }) => {
                     Daftar Episode
                 </h2>
                 <ul className="space-y-2">
-                    {data.episodeList.map((ep, index) => (
+                    {data.episodesList.map((ep, index) => (
                         <li
                             key={index}
                             className="flex justify-between items-center bg-gray-800/50 hover:bg-gray-800 p-3 rounded-lg transition"
@@ -151,7 +132,7 @@ const Page = async ({ params }) => {
                                 {ep.title}
                             </Link>
                             <span className="text-sm text-gray-400">
-                                Ep {ep.eps}
+                                {ep.date}
                             </span>
                         </li>
                     ))}

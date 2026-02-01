@@ -1,16 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAnime } from "@/libs/service-api";
+import { getAnimeHome } from "@/services/anime.home";
 import { Star } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 const Page = async () => {
-    const animeHome = await getAnime({ resource: "home" });
-
-    const ongoingAnime = animeHome?.data?.ongoing.animeList || [];
-    const completeAnime = animeHome?.data?.completed.animeList || [];
-    const linkCompleteAnime = animeHome?.data?.completed.href || "/animeFull";
-    const linkOngoingAnime = animeHome?.data?.ongoing.href || "/ongoinganime";
+    const { ongoingAnime, completeAnime, linkOngoingAnime, linkCompleteAnime } =
+        await getAnimeHome();
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 px-6 py-10 text-white">
