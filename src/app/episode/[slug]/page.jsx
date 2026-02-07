@@ -28,7 +28,7 @@ const Page = async ({ params }) => {
                         <div className="flex justify-between align-items-center mt-15">
                             {data.prevEpisode && (
                                 <Link
-                                    href={`${data.prevEpisode.href}`}
+                                    href={`${data.prevEpisode.episodeId}`}
                                     className="px-4 py-2 bg-blue-600 rounded"
                                 >
                                     ⬅ Sebelumnya
@@ -37,7 +37,7 @@ const Page = async ({ params }) => {
 
                             {data.nextEpisode && (
                                 <Link
-                                    href={`${data.nextEpisode.href}`}
+                                    href={`${data.nextEpisode.episodeId}`}
                                     className="px-4 py-2 bg-blue-600 rounded"
                                 >
                                     Selanjutnya ➡
