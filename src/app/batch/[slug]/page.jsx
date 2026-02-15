@@ -1,6 +1,5 @@
 import Image from "next/image";
 import ButtonBack from "@/components/Navbar/ButtonBack";
-import { getAnime } from "@/libs/service-api";
 import { getBatchDetail } from "@/services/anime.batch";
 import Link from "next/link";
 
