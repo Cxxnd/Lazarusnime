@@ -1,15 +1,14 @@
 import AnimeList from "@/components/AnimeList";
-import { getAnime } from "@/libs/service-api";
+import { getAnimeFull } from "@/services/anime.fullList";
 export const dynamic = "force-dynamic";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 
 const animeFull = async () => {
-    const data = await getAnime({ resource: "unlimited" });
-    const res = data?.data?.list || {};
+    const data = await getAnimeFull();
     return (
         <div className="p-4 max-w-7xl mx-auto">
             <ButtonBack />
-            <AnimeList api={res} mode="az" />
+            <AnimeList api={data} mode="az" />
         </div>
     );
 };

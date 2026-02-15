@@ -8,4 +8,11 @@ export const animeRepository = {
         if (!slug) throw new Error('Slug is required');
         return fetchAPI(`${process.env.NEXT_PUBLIC_API_BASE_URL}/anime/${slug}`);
     },
+    getAnimeFull() {
+        return fetchAPI(`${process.env.NEXT_PUBLIC_API_BASE_URL}/unlimited`);
+    },
+    getBatchDetail(slug) {
+        if (!slug) throw new Error('Slug is required');
+        return fetchAPI(`${process.env.NEXT_PUBLIC_API_BASE_URL}/batch/${slug}`);
+    },
 }

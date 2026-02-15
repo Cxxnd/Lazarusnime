@@ -1,11 +1,12 @@
 import Image from "next/image";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 import { getAnime } from "@/libs/service-api";
+import { getBatchDetail } from "@/services/anime.batch";
 import Link from "next/link";
 
 const Page = async ({ params }) => {
     const { slug } = await params;
-    const res = await getAnime({ resource: `batch/${slug}` });
+    const res = await getBatchDetail(slug);
     const data = res?.data || res || {};
     if (!data || !data.poster) {
         return (
@@ -82,7 +83,7 @@ const Page = async ({ params }) => {
                     Download Batch Subtitle Indonesia
                 </h2>
 
-                {data.downloadUrl?.formats?.map((format, i) => (
+                {data.downloadUrls?.map((format, i) => (
                     <div key={i} className="space-y-5">
                         <h3 className="text-base font-bold">{format.title}</h3>
 
