@@ -4,8 +4,13 @@ import { animeRepository } from "@/repositories/anime.repositories";
 export async function getOngoingAnime(page = 1) {
     const res = await animeRepository.getOngoingAnime(page);
 
+    const mapped = ongoingAnime({
+        animeList: res?.data?.animeList,
+        pagination: res?.pagination,
+    });
+
     return {
-        list: ongoingAnime(res?.data)?.animeList ?? [],
-        pagination: ongoingAnime(res?.data)?.pagination ?? {},
-    }
+        list: mapped.animeList,
+        pagination: mapped.pagination,
+    };
 }

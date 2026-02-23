@@ -1,5 +1,3 @@
-import animeFull from "@/app/animeFull/page"
-
 export function ongoingItem(data) {
     return {
         animeId: data.animeId,
@@ -13,8 +11,10 @@ export function ongoingItem(data) {
 
 export function ongoingAnime(data = {}) {
     return {
-        animeList: data.animeList.map(ongoingItem) ?? [],
-        currentPage: data.currentPage ?? {},
-        totalPages: data.totalPages ?? {},
+        animeList: data?.animeList?.map(ongoingItem) ?? [],
+        pagination: {
+            currentPage: data?.pagination?.currentPage ?? 1,
+            totalPages: data?.pagination?.totalPages ?? 1,
+        }
     }
 }
