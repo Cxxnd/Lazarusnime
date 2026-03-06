@@ -18,5 +18,9 @@ export const animeRepository = {
     getOngoingAnime(page = 1) {
         if (page < 1) throw new Error('Page number must be greater than 0');
         return fetchAPI(`${process.env.NEXT_PUBLIC_API_BASE_URL}/ongoing-anime?page=${page}`);
+    },
+    getCompleteAnime(page = 1) {
+        if (page < 1) throw new Error('Page number must be greater than 0');
+        return fetchAPI(`${process.env.NEXT_PUBLIC_API_BASE_URL}/complete-anime?page=${page}`);
     }
 }
