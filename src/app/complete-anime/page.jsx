@@ -5,7 +5,6 @@ import { getCompleteAnime } from "@/services/anime.complete";
 import Pagination from "@/components/Utilities/Pagination";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 import { useState, useEffect } from "react";
-import { getAnime } from "@/libs/service-api";
 import Loading from "@/components/Utilities/loading";
 import { useRouter, useSearchParams } from "next/navigation";
 
