@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAnime } from "@/libs/service-api";
 import { getJadwalAnime } from "@/services/anime.jadwal";
 export const dynamic = "force-dynamic";
 import ButtonBack from "@/components/Navbar/ButtonBack";

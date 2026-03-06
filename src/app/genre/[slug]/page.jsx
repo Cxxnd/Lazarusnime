@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { getAnime } from "@/libs/service-api";
 import { getGenreDetail } from "@/services/anime.genredetail";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 import Pagination from "@/components/Utilities/Pagination";

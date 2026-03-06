@@ -3,7 +3,6 @@
 import AnimeList from "@/components/AnimeList";
 import Pagination from "@/components/Utilities/Pagination";
 import { useState, useEffect } from "react";
-import { getAnime } from "@/libs/service-api";
 import { getOngoingAnime } from "@/services/anime.ongoing";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 import Loading from "@/components/Utilities/loading";
