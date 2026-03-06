@@ -37,7 +37,7 @@ const AnimeList = ({ api, mode }) => {
     }
 
     return (
-        <div className="grid gap-6 [grid-template-columns:repeat(auto-fill,300px)] justify-center bg-gray-900 min-h-screen p-4">
+        <div className="grid gap-6 [grid-template-columns:repeat(auto-fill,220px)] justify-center bg-gray-900 min-h-screen p-4">
             {animeData?.map((anime, index) => (
                 <Link
                     href={`/anime/${anime.animeId}`}
