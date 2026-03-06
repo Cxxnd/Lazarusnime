@@ -1,7 +1,7 @@
 "use client";
 
 import AnimeList from "@/components/AnimeList";
-import { getCompleteAnime } from "@/services/anime.repositories";
+import { getCompleteAnime } from "@/services/anime.complete";
 import Pagination from "@/components/Utilities/Pagination";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 import { useState, useEffect } from "react";
