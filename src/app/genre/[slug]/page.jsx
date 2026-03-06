@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { getAnime } from "@/libs/service-api";
+import { getGenreDetail } from "@/services/anime.genredetail";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 import Pagination from "@/components/Utilities/Pagination";
 import AnimeList from "@/components/AnimeList";
@@ -31,10 +32,8 @@ const GenreDetailPage = ({ params }) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const res = await getAnime({
-                    resource: `genre/${slug}?page=${page}`,
-                });
-                setAnimeData(res || {});
+                const { list, pagination } = await getGenreDetail(slug, page);
+                setAnimeData({ list, pagination });
             } catch (error) {
                 console.error("Error fetching data:", error);
                 setAnimeData({});
@@ -50,9 +49,6 @@ const GenreDetailPage = ({ params }) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, [page]);
 
-    const animeList = animeData?.data?.animeList || [];
-    const totalPages = animeData?.pagination?.totalPages || 1;
-
     return (
         <div className="p-4 max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-8">
@@ -67,27 +63,27 @@ const GenreDetailPage = ({ params }) => {
 
             {loading ? (
                 <Loading />
-            ) : animeList.length === 0 ? (
+            ) : animeData?.list?.length === 0 ? (
                 <div className="text-center py-20 text-gray-400">
                     Tidak ada anime ditemukan di genre ini
                 </div>
             ) : (
                 <>
-                    <AnimeList api={animeList} />
+                    <AnimeList api={animeData?.list} />
                     <div className="flex justify-center items-center gap-2 py-4 flex-col bg-gray-900 text-white">
                         <p className="text-gray-400">
                             Halaman{" "}
                             <span className="text-white font-semibold">
-                                {page}
+                                {animeData?.pagination?.currentPage}
                             </span>{" "}
                             dari{" "}
                             <span className="text-white font-semibold">
-                                {totalPages}
+                                {animeData?.pagination?.totalPages}
                             </span>
                         </p>
                         <Pagination
                             page={page}
-                            lastPage={totalPages}
+                            lastPage={animeData?.pagination?.totalPages}
                             setPage={setPage}
                         />
                     </div>

@@ -1,12 +1,9 @@
 import Link from "next/link";
-import { getAnime } from "@/libs/service-api";
+import { getGenreList } from "@/services/anime.genrelist";
 import ButtonBack from "@/components/Navbar/ButtonBack";
-export const dynamic = "force-dynamic";
 
 const Page = async () => {
-    const genreData = await getAnime({ resource: "genre" });
-    const data = genreData?.data || [];
-
+    const genreData = await getGenreList();
     return (
         <section className="px-6 py-8 min-h-screen bg-gray-900 text-white">
             <ButtonBack />
@@ -14,9 +11,9 @@ const Page = async () => {
                 Daftar Genre Anime
             </h1>
 
-            {data?.genreList.length > 0 ? (
+            {genreData?.genreList.length > 0 ? (
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    {data.genreList.map((genre, index) => (
+                    {genreData.genreList.map((genre, index) => (
                         <Link
                             key={index}
                             href={`/genre/${genre.genreId}`}

@@ -5,6 +5,10 @@ const nextConfig = {
             {
                 protocol: "https",
                 hostname: "otakudesu.best",
+            },
+            {
+                protocol: "https",
+                hostname: "otakudesu.blog",
             }
         ]
     }

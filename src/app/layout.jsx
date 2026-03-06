@@ -22,7 +22,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
+        <html
+            lang="en"
+            className="scroll-smooth"
+            data-scroll-behavior="smooth"
+            suppressHydrationWarning
+        >
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased text-white bg-gray-900`}
                 id="main-scroll"

@@ -1,17 +1,15 @@
 import AnimeList from "@/components/AnimeList";
-import { getAnime } from "@/libs/service-api";
+import { getSearchAnime } from "@/services/anime.search";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 
 const Page = async ({ params }) => {
     try {
-        const { keyword } = await params;
-        const decoded = decodeURIComponent(keyword);
+        const { keyword } = await params; // <-- penting
 
-        // Ambil data dari API
-        const data = await getAnime({ resource: `search/${decoded}` });
+        const slug = decodeURIComponent(keyword ?? "");
 
-        // Pastikan hasilnya ada dan punya list
-        const results = data?.data?.animeList || data?.results || [];
+        const data = await getSearchAnime(slug);
+        const results = data?.animeList ?? [];
 
         return (
             <section className="min-h-screen px-6 py-8 bg-gray-900 text-white">
@@ -22,7 +20,7 @@ const Page = async ({ params }) => {
                 {results.length === 0 ? (
                     <p className="text-gray-400">
                         Tidak ditemukan hasil untuk{" "}
-                        <span className="italic">"{decoded}"</span>.
+                        <span className="italic">"{slug}"</span>.
                     </p>
                 ) : (
                     <AnimeList api={results} />
@@ -31,9 +29,10 @@ const Page = async ({ params }) => {
         );
     } catch (error) {
         console.error("Error di search:", error?.message || error);
+
         return (
             <section className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-red-400">
-                <p>Terjadi kesalahan: {error.message}</p>
+                <p>Terjadi kesalahan: {error?.message}</p>
             </section>
         );
     }

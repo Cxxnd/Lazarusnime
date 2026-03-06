@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAnime } from "@/libs/service-api";
+import { getJadwalAnime } from "@/services/anime.jadwal";
 export const dynamic = "force-dynamic";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 
 const Jadwal = async () => {
-    const res = await getAnime({ resource: "schedule" });
-    const jadwal = res?.data;
+    const { data: jadwal } = await getJadwalAnime();
 
-    if (!Array.isArray(jadwal) || jadwal.length === 0) {
+    if (!jadwal?.length) {
         return (
             <p className="text-center text-gray-400">
                 Data jadwal tidak tersedia
@@ -19,6 +19,7 @@ const Jadwal = async () => {
     return (
         <div className="space-y-12 p-4 max-w-7xl mx-auto">
             <ButtonBack />
+
             {jadwal.map((dayGroup, dayIndex) => (
                 <section key={dayIndex} className="space-y-4">
                     <h2 className="text-2xl font-bold text-white border-l-4 border-blue-500 pl-3">
@@ -40,6 +41,7 @@ const Jadwal = async () => {
                                         unoptimized
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
+
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                                 </div>
 
