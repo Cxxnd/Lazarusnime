@@ -3,7 +3,6 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 
 export default function VideoPlayer({ streamServers = [] }) {
-    const API_BASE = "https://www.sankavollerei.com";
     const iframeRef = useRef(null);
     const initialized = useRef(false);
 
@@ -68,9 +67,12 @@ export default function VideoPlayer({ streamServers = [] }) {
 
         const fetchStream = async () => {
             try {
-                const res = await fetch(`${API_BASE}${currentServer}`, {
-                    cache: "no-store",
-                });
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_BASE}${currentServer}`,
+                    {
+                        cache: "no-store",
+                    },
+                );
                 const json = await res.json();
 
                 const url =

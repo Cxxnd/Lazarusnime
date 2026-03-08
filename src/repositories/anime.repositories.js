@@ -42,5 +42,9 @@ export const animeRepository = {
         return fetchAPI(
             `${process.env.NEXT_PUBLIC_API_BASE_URL}/search/${encoded}`
         );
+    },
+    getEpisode(slug) {
+        if (!slug) throw new Error('Slug is required');
+        return fetchAPI(`${process.env.NEXT_PUBLIC_API_BASE_URL}/episode/${slug}`);
     }
 }
