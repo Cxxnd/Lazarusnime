@@ -28,11 +28,9 @@ const Page = async ({ params }) => {
             </section>
         );
     } catch (error) {
-        console.error("Error di search:", error?.message || error);
-
         return (
             <section className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-red-400">
-                <p>Terjadi kesalahan: {error?.message}</p>
+                <p>Terjadi kesalahan coba cari dengan kata kunci lain....</p>
             </section>
         );
     }
