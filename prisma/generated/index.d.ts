@@ -872,12 +872,22 @@ export namespace Prisma {
 
   export type AggregateCollection = {
     _count: CollectionCountAggregateOutputType | null
+    _avg: CollectionAvgAggregateOutputType | null
+    _sum: CollectionSumAggregateOutputType | null
     _min: CollectionMinAggregateOutputType | null
     _max: CollectionMaxAggregateOutputType | null
   }
 
+  export type CollectionAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CollectionSumAggregateOutputType = {
+    id: number | null
+  }
+
   export type CollectionMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     slug: string | null
     poster: string | null
     title: string | null
@@ -887,7 +897,7 @@ export namespace Prisma {
   }
 
   export type CollectionMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     slug: string | null
     poster: string | null
     title: string | null
@@ -907,6 +917,14 @@ export namespace Prisma {
     _all: number
   }
 
+
+  export type CollectionAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type CollectionSumAggregateInputType = {
+    id?: true
+  }
 
   export type CollectionMinAggregateInputType = {
     id?: true
@@ -977,6 +995,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: CollectionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CollectionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: CollectionMinAggregateInputType
@@ -1007,12 +1037,14 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: CollectionCountAggregateInputType | true
+    _avg?: CollectionAvgAggregateInputType
+    _sum?: CollectionSumAggregateInputType
     _min?: CollectionMinAggregateInputType
     _max?: CollectionMaxAggregateInputType
   }
 
   export type CollectionGroupByOutputType = {
-    id: string
+    id: number
     slug: string
     poster: string
     title: string
@@ -1020,6 +1052,8 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     _count: CollectionCountAggregateOutputType | null
+    _avg: CollectionAvgAggregateOutputType | null
+    _sum: CollectionSumAggregateOutputType | null
     _min: CollectionMinAggregateOutputType | null
     _max: CollectionMaxAggregateOutputType | null
   }
@@ -1084,7 +1118,7 @@ export namespace Prisma {
     name: "Collection"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       slug: string
       poster: string
       title: string
@@ -1514,7 +1548,7 @@ export namespace Prisma {
    * Fields of the Collection model
    */
   interface CollectionFieldRefs {
-    readonly id: FieldRef<"Collection", 'String'>
+    readonly id: FieldRef<"Collection", 'Int'>
     readonly slug: FieldRef<"Collection", 'String'>
     readonly poster: FieldRef<"Collection", 'String'>
     readonly title: FieldRef<"Collection", 'String'>
@@ -1936,6 +1970,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -1964,16 +2012,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Float'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'Float[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -1984,7 +2032,7 @@ export namespace Prisma {
     AND?: CollectionWhereInput | CollectionWhereInput[]
     OR?: CollectionWhereInput[]
     NOT?: CollectionWhereInput | CollectionWhereInput[]
-    id?: StringFilter<"Collection"> | string
+    id?: IntFilter<"Collection"> | number
     slug?: StringFilter<"Collection"> | string
     poster?: StringFilter<"Collection"> | string
     title?: StringFilter<"Collection"> | string
@@ -2004,7 +2052,7 @@ export namespace Prisma {
   }
 
   export type CollectionWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     slug_user_email?: CollectionSlugUser_emailCompoundUniqueInput
     AND?: CollectionWhereInput | CollectionWhereInput[]
     OR?: CollectionWhereInput[]
@@ -2026,15 +2074,17 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CollectionCountOrderByAggregateInput
+    _avg?: CollectionAvgOrderByAggregateInput
     _max?: CollectionMaxOrderByAggregateInput
     _min?: CollectionMinOrderByAggregateInput
+    _sum?: CollectionSumOrderByAggregateInput
   }
 
   export type CollectionScalarWhereWithAggregatesInput = {
     AND?: CollectionScalarWhereWithAggregatesInput | CollectionScalarWhereWithAggregatesInput[]
     OR?: CollectionScalarWhereWithAggregatesInput[]
     NOT?: CollectionScalarWhereWithAggregatesInput | CollectionScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Collection"> | string
+    id?: IntWithAggregatesFilter<"Collection"> | number
     slug?: StringWithAggregatesFilter<"Collection"> | string
     poster?: StringWithAggregatesFilter<"Collection"> | string
     title?: StringWithAggregatesFilter<"Collection"> | string
@@ -2044,7 +2094,6 @@ export namespace Prisma {
   }
 
   export type CollectionCreateInput = {
-    id?: string
     slug: string
     poster: string
     title: string
@@ -2054,7 +2103,7 @@ export namespace Prisma {
   }
 
   export type CollectionUncheckedCreateInput = {
-    id?: string
+    id?: number
     slug: string
     poster: string
     title: string
@@ -2064,7 +2113,6 @@ export namespace Prisma {
   }
 
   export type CollectionUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     poster?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -2074,7 +2122,7 @@ export namespace Prisma {
   }
 
   export type CollectionUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     slug?: StringFieldUpdateOperationsInput | string
     poster?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -2084,7 +2132,7 @@ export namespace Prisma {
   }
 
   export type CollectionCreateManyInput = {
-    id?: string
+    id?: number
     slug: string
     poster: string
     title: string
@@ -2094,7 +2142,6 @@ export namespace Prisma {
   }
 
   export type CollectionUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     poster?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -2104,13 +2151,24 @@ export namespace Prisma {
   }
 
   export type CollectionUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     slug?: StringFieldUpdateOperationsInput | string
     poster?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2154,6 +2212,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type CollectionAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type CollectionMaxOrderByAggregateInput = {
     id?: SortOrder
     slug?: SortOrder
@@ -2172,6 +2234,26 @@ export namespace Prisma {
     user_email?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type CollectionSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2214,6 +2296,25 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -2239,6 +2340,33 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -2254,17 +2382,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {

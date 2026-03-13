@@ -9,7 +9,15 @@ const nextConfig = {
             {
                 protocol: "https",
                 hostname: "otakudesu.blog",
-            }
+            },
+            {
+                protocol: "https",
+                hostname: "avatars.githubusercontent.com",
+            },
+            {
+                protocol: "https",
+                hostname: "lh3.googleusercontent.com",
+            },
         ]
     }
 };
