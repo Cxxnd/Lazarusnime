@@ -1,6 +1,6 @@
 import prisma from "@/libs/prisma";
 
-export async function GET(request) {
+export default async function GET(request) {
     try {
         const { slug, poster, title, user_email, provider } = await request.json();
         const data = {
