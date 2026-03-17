@@ -15,9 +15,10 @@ const Navbar = () => {
                         LAZARUSNIME
                     </Link>
 
-                    {/* User + Search */}
+                    {/* User */}
                     <UserActivation />
 
+                    {/* Search */}
                     <InputSearch />
                 </div>
             </nav>

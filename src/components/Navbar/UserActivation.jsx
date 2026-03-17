@@ -1,14 +1,12 @@
 import { authUserSession } from "@/libs/authlibs";
 import UserDropdown from "../Utilities/UserDropdown";
 import Link from "next/link";
-import InputSearch from "./inputSearch";
 
 const UserActivation = async () => {
     const user = await authUserSession();
 
     return (
         <div className="flex justify-between gap-4 items-center">
-            {/* <InputSearch className="w-full md:w-auto" /> */}
             {user ? (
                 <UserDropdown user={user} />
             ) : (
