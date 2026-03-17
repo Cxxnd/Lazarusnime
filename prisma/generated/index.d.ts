@@ -199,8 +199,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 7.4.2
-   * Query Engine version: 94a226be1cf2967af2541cca5529f0f7ba866919
+   * Prisma Client JS version: 7.5.0
+   * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
    */
   export type PrismaVersion = {
     client: string
@@ -892,6 +892,7 @@ export namespace Prisma {
     poster: string | null
     title: string | null
     user_email: string | null
+    provider: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -902,6 +903,7 @@ export namespace Prisma {
     poster: string | null
     title: string | null
     user_email: string | null
+    provider: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -912,6 +914,7 @@ export namespace Prisma {
     poster: number
     title: number
     user_email: number
+    provider: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -932,6 +935,7 @@ export namespace Prisma {
     poster?: true
     title?: true
     user_email?: true
+    provider?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -942,6 +946,7 @@ export namespace Prisma {
     poster?: true
     title?: true
     user_email?: true
+    provider?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -952,6 +957,7 @@ export namespace Prisma {
     poster?: true
     title?: true
     user_email?: true
+    provider?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1049,6 +1055,7 @@ export namespace Prisma {
     poster: string
     title: string
     user_email: string
+    provider: string
     createdAt: Date
     updatedAt: Date
     _count: CollectionCountAggregateOutputType | null
@@ -1078,6 +1085,7 @@ export namespace Prisma {
     poster?: boolean
     title?: boolean
     user_email?: boolean
+    provider?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["collection"]>
@@ -1088,6 +1096,7 @@ export namespace Prisma {
     poster?: boolean
     title?: boolean
     user_email?: boolean
+    provider?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["collection"]>
@@ -1098,6 +1107,7 @@ export namespace Prisma {
     poster?: boolean
     title?: boolean
     user_email?: boolean
+    provider?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["collection"]>
@@ -1108,11 +1118,12 @@ export namespace Prisma {
     poster?: boolean
     title?: boolean
     user_email?: boolean
+    provider?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CollectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "poster" | "title" | "user_email" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
+  export type CollectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "poster" | "title" | "user_email" | "provider" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
 
   export type $CollectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Collection"
@@ -1123,6 +1134,7 @@ export namespace Prisma {
       poster: string
       title: string
       user_email: string
+      provider: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["collection"]>
@@ -1553,6 +1565,7 @@ export namespace Prisma {
     readonly poster: FieldRef<"Collection", 'String'>
     readonly title: FieldRef<"Collection", 'String'>
     readonly user_email: FieldRef<"Collection", 'String'>
+    readonly provider: FieldRef<"Collection", 'String'>
     readonly createdAt: FieldRef<"Collection", 'DateTime'>
     readonly updatedAt: FieldRef<"Collection", 'DateTime'>
   }
@@ -1731,6 +1744,11 @@ export namespace Prisma {
      * Skip the first `n` Collections.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Collections.
+     */
     distinct?: CollectionScalarFieldEnum | CollectionScalarFieldEnum[]
   }
 
@@ -1941,6 +1959,7 @@ export namespace Prisma {
     poster: 'poster',
     title: 'title',
     user_email: 'user_email',
+    provider: 'provider',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -2037,6 +2056,7 @@ export namespace Prisma {
     poster?: StringFilter<"Collection"> | string
     title?: StringFilter<"Collection"> | string
     user_email?: StringFilter<"Collection"> | string
+    provider?: StringFilter<"Collection"> | string
     createdAt?: DateTimeFilter<"Collection"> | Date | string
     updatedAt?: DateTimeFilter<"Collection"> | Date | string
   }
@@ -2047,6 +2067,7 @@ export namespace Prisma {
     poster?: SortOrder
     title?: SortOrder
     user_email?: SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2061,6 +2082,7 @@ export namespace Prisma {
     poster?: StringFilter<"Collection"> | string
     title?: StringFilter<"Collection"> | string
     user_email?: StringFilter<"Collection"> | string
+    provider?: StringFilter<"Collection"> | string
     createdAt?: DateTimeFilter<"Collection"> | Date | string
     updatedAt?: DateTimeFilter<"Collection"> | Date | string
   }, "id" | "slug_user_email">
@@ -2071,6 +2093,7 @@ export namespace Prisma {
     poster?: SortOrder
     title?: SortOrder
     user_email?: SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CollectionCountOrderByAggregateInput
@@ -2089,6 +2112,7 @@ export namespace Prisma {
     poster?: StringWithAggregatesFilter<"Collection"> | string
     title?: StringWithAggregatesFilter<"Collection"> | string
     user_email?: StringWithAggregatesFilter<"Collection"> | string
+    provider?: StringWithAggregatesFilter<"Collection"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Collection"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Collection"> | Date | string
   }
@@ -2098,6 +2122,7 @@ export namespace Prisma {
     poster: string
     title: string
     user_email: string
+    provider: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2108,6 +2133,7 @@ export namespace Prisma {
     poster: string
     title: string
     user_email: string
+    provider: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2117,6 +2143,7 @@ export namespace Prisma {
     poster?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2127,6 +2154,7 @@ export namespace Prisma {
     poster?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2137,6 +2165,7 @@ export namespace Prisma {
     poster: string
     title: string
     user_email: string
+    provider: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2146,6 +2175,7 @@ export namespace Prisma {
     poster?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2156,6 +2186,7 @@ export namespace Prisma {
     poster?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2208,6 +2239,7 @@ export namespace Prisma {
     poster?: SortOrder
     title?: SortOrder
     user_email?: SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2222,6 +2254,7 @@ export namespace Prisma {
     poster?: SortOrder
     title?: SortOrder
     user_email?: SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2232,6 +2265,7 @@ export namespace Prisma {
     poster?: SortOrder
     title?: SortOrder
     user_email?: SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }

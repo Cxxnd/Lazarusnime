@@ -47,13 +47,7 @@ const UserDropdown = ({ user }) => {
                 <div className="absolute right-0 mt-2 w-48 bg-gray-900 rounded-xl shadow-xl z-[9999] overflow-hidden min-w-[180px]">
                     <div className="px-4 py-2 border-b border-gray-700 rounded-xl">
                         <Link
-                            href="/maintenece"
-                            className="block px-4 py-2 hover:bg-gray-800"
-                        >
-                            Profile
-                        </Link>
-                        <Link
-                            href="/maintenece"
+                            href="/users/dashboard"
                             className="block px-4 py-2 hover:bg-gray-800"
                         >
                             Dashboard
