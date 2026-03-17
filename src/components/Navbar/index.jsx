@@ -4,7 +4,7 @@ import UserActivation from "./UserActivation";
 const Navbar = () => {
     return (
         <header className="bg-gradient-to-r from-cyan-400 via-cyan-400 to-blue-600 shadow-lg z-50 rounded-2xl w-full items-center justify-center">
-            <div className="max-w-7xl mx-96 px-4">
+            <div className="max-w-7xl mx-auto px-4">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 py-4">
                     {/* Logo */}
                     <Link
