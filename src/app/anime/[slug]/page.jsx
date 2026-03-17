@@ -5,8 +5,7 @@ import ButtonBack from "@/components/Navbar/ButtonBack";
 
 const Page = async ({ params }) => {
     const { slug } = await params;
-    const para = { slug };
-    const data = await getAnimeDetail(para);
+    const data = await getAnimeDetail(slug);
 
     if (!data)
         return (
