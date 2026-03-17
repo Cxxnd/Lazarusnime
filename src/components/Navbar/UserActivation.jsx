@@ -8,7 +8,7 @@ const UserActivation = async () => {
 
     return (
         <div className="flex justify-between gap-4 items-center">
-            <InputSearch className="w-full md:w-auto" />
+            {/* <InputSearch className="w-full md:w-auto" /> */}
             {user ? (
                 <UserDropdown user={user} />
             ) : (

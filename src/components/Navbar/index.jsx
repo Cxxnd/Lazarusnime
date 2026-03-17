@@ -1,5 +1,6 @@
 import Link from "next/link";
 import UserActivation from "./UserActivation";
+import InputSearch from "./inputSearch";
 
 const Navbar = () => {
     return (
@@ -16,6 +17,8 @@ const Navbar = () => {
 
                     {/* User + Search */}
                     <UserActivation />
+
+                    <InputSearch />
                 </div>
             </nav>
         </header>
