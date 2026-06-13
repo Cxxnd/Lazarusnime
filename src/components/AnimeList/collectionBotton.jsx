@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Bookmark, BookmarkCheck } from "lucide-react";
 
-const BookmarkButton = ({ slug, user_email, poster }) => {
+const BookmarkButton = ({ slug, user_email, poster, provider }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
     const [error, setError] = useState(null);
@@ -15,7 +15,7 @@ const BookmarkButton = ({ slug, user_email, poster }) => {
         setIsSubmitting(true);
         setError(null);
 
-        const data = { slug, user_email, poster };
+        const data = { slug, user_email, poster, provider };
 
         try {
             const response = await fetch("/api/v1/bookmark", {
@@ -45,7 +45,7 @@ const BookmarkButton = ({ slug, user_email, poster }) => {
     return (
         <div className="flex justify-end items-end">
             <button
-                className={`text-sm rounded py-1 px-1 hover:font-bold transition-all ${
+                className={`text-sm rounded py-1 px-1 hover:font-bold pointer-events-auto transition-all ${
                     isAdded
                         ? "bg-green-500 hover:bg-green-600"
                         : "bg-color-accent hover:bg-color-dark"

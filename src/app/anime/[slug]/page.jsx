@@ -10,7 +10,7 @@ const Page = async ({ params }) => {
     const { slug } = await params;
     const user = await authUserSession();
     const data = await getAnimeDetail(slug);
-    const bookmark = await prisma.Bookmark.findFirst({
+    const bookmark = await prisma.collection.findFirst({
         where: {
             slug: String(slug),
             user_email: user?.email || "",
@@ -39,24 +39,35 @@ const Page = async ({ params }) => {
                 </div>
 
                 {/* Info Anime */}
-                <div className="flex flex-col justify-between">
+                <div className="flex flex-col justify-between flex-1">
                     <div>
-                        <h1 className="text-3xl font-bold text-blue-400">
-                            {bookmark && (
-                                <p className="text-sm text-color-accent flex justify-end items-end">
-                                    Already in your collection
+                        <div className="flex items-start justify-between gap-4">
+                            <div>
+                                <h1 className="text-3xl font-bold text-blue-400">
+                                    {data.title}
+                                </h1>
+                                <p className="italic text-gray-400">
+                                    {data.japanese}
                                 </p>
-                            )}
-                            {!bookmark && user && (
-                                <BookmarkButton
-                                    user_email={user.email}
-                                    poster={data.poster}
-                                    slug={slug}
-                                />
-                            )}
-                            {data.title}
-                        </h1>
-                        <p className="italic text-gray-400">{data.japanese}</p>
+                            </div>
+
+                            <div className="flex-shrink-0 self-start">
+                                {bookmark ? (
+                                    <p className="text-sm text-blue-400 font-bold whitespace-nowrap">
+                                        Already in your collection
+                                    </p>
+                                ) : (
+                                    user && (
+                                        <BookmarkButton
+                                            user_email={user.email}
+                                            poster={data.poster}
+                                            slug={slug}
+                                            provider={user.provider}
+                                        />
+                                    )
+                                )}
+                            </div>
+                        </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-4 text-sm">
                             <p>
@@ -72,36 +83,42 @@ const Page = async ({ params }) => {
                                 </span>{" "}
                                 {data.studios}
                             </p>
+
                             <p>
                                 <span className="font-medium text-gray-300">
                                     Tipe:
                                 </span>{" "}
                                 {data.type}
                             </p>
+
                             <p>
                                 <span className="font-medium text-gray-300">
                                     Status:
                                 </span>{" "}
                                 {data.status}
                             </p>
+
                             <p>
                                 <span className="font-medium text-gray-300">
                                     Episode:
                                 </span>{" "}
                                 {data.episodes || "ongoing"}
                             </p>
+
                             <p>
                                 <span className="font-medium text-gray-300">
                                     Durasi:
                                 </span>{" "}
                                 {data.duration}
                             </p>
+
                             <p>
                                 <span className="font-medium text-gray-300">
                                     Rilis:
                                 </span>{" "}
                                 {data.aired}
                             </p>
+
                             <p>
                                 <span className="font-medium text-gray-300">
                                     Produser:

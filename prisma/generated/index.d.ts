@@ -132,7 +132,7 @@ export class PrismaClient<
    * 
    * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
@@ -199,8 +199,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 7.5.0
-   * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
+   * Prisma Client JS version: 7.8.0
+   * Query Engine version: 3c6e192761c0362d496ed980de936e2f3cebcd3a
    */
   export type PrismaVersion = {
     client: string
@@ -890,7 +890,6 @@ export namespace Prisma {
     id: number | null
     slug: string | null
     poster: string | null
-    title: string | null
     user_email: string | null
     provider: string | null
     createdAt: Date | null
@@ -901,7 +900,6 @@ export namespace Prisma {
     id: number | null
     slug: string | null
     poster: string | null
-    title: string | null
     user_email: string | null
     provider: string | null
     createdAt: Date | null
@@ -912,7 +910,6 @@ export namespace Prisma {
     id: number
     slug: number
     poster: number
-    title: number
     user_email: number
     provider: number
     createdAt: number
@@ -933,7 +930,6 @@ export namespace Prisma {
     id?: true
     slug?: true
     poster?: true
-    title?: true
     user_email?: true
     provider?: true
     createdAt?: true
@@ -944,7 +940,6 @@ export namespace Prisma {
     id?: true
     slug?: true
     poster?: true
-    title?: true
     user_email?: true
     provider?: true
     createdAt?: true
@@ -955,7 +950,6 @@ export namespace Prisma {
     id?: true
     slug?: true
     poster?: true
-    title?: true
     user_email?: true
     provider?: true
     createdAt?: true
@@ -1053,7 +1047,6 @@ export namespace Prisma {
     id: number
     slug: string
     poster: string
-    title: string
     user_email: string
     provider: string
     createdAt: Date
@@ -1083,7 +1076,6 @@ export namespace Prisma {
     id?: boolean
     slug?: boolean
     poster?: boolean
-    title?: boolean
     user_email?: boolean
     provider?: boolean
     createdAt?: boolean
@@ -1094,7 +1086,6 @@ export namespace Prisma {
     id?: boolean
     slug?: boolean
     poster?: boolean
-    title?: boolean
     user_email?: boolean
     provider?: boolean
     createdAt?: boolean
@@ -1105,7 +1096,6 @@ export namespace Prisma {
     id?: boolean
     slug?: boolean
     poster?: boolean
-    title?: boolean
     user_email?: boolean
     provider?: boolean
     createdAt?: boolean
@@ -1116,14 +1106,13 @@ export namespace Prisma {
     id?: boolean
     slug?: boolean
     poster?: boolean
-    title?: boolean
     user_email?: boolean
     provider?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CollectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "poster" | "title" | "user_email" | "provider" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
+  export type CollectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "poster" | "user_email" | "provider" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
 
   export type $CollectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Collection"
@@ -1132,7 +1121,6 @@ export namespace Prisma {
       id: number
       slug: string
       poster: string
-      title: string
       user_email: string
       provider: string
       createdAt: Date
@@ -1563,7 +1551,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Collection", 'Int'>
     readonly slug: FieldRef<"Collection", 'String'>
     readonly poster: FieldRef<"Collection", 'String'>
-    readonly title: FieldRef<"Collection", 'String'>
     readonly user_email: FieldRef<"Collection", 'String'>
     readonly provider: FieldRef<"Collection", 'String'>
     readonly createdAt: FieldRef<"Collection", 'DateTime'>
@@ -1957,7 +1944,6 @@ export namespace Prisma {
     id: 'id',
     slug: 'slug',
     poster: 'poster',
-    title: 'title',
     user_email: 'user_email',
     provider: 'provider',
     createdAt: 'createdAt',
@@ -2054,7 +2040,6 @@ export namespace Prisma {
     id?: IntFilter<"Collection"> | number
     slug?: StringFilter<"Collection"> | string
     poster?: StringFilter<"Collection"> | string
-    title?: StringFilter<"Collection"> | string
     user_email?: StringFilter<"Collection"> | string
     provider?: StringFilter<"Collection"> | string
     createdAt?: DateTimeFilter<"Collection"> | Date | string
@@ -2065,7 +2050,6 @@ export namespace Prisma {
     id?: SortOrder
     slug?: SortOrder
     poster?: SortOrder
-    title?: SortOrder
     user_email?: SortOrder
     provider?: SortOrder
     createdAt?: SortOrder
@@ -2080,7 +2064,6 @@ export namespace Prisma {
     NOT?: CollectionWhereInput | CollectionWhereInput[]
     slug?: StringFilter<"Collection"> | string
     poster?: StringFilter<"Collection"> | string
-    title?: StringFilter<"Collection"> | string
     user_email?: StringFilter<"Collection"> | string
     provider?: StringFilter<"Collection"> | string
     createdAt?: DateTimeFilter<"Collection"> | Date | string
@@ -2091,7 +2074,6 @@ export namespace Prisma {
     id?: SortOrder
     slug?: SortOrder
     poster?: SortOrder
-    title?: SortOrder
     user_email?: SortOrder
     provider?: SortOrder
     createdAt?: SortOrder
@@ -2110,7 +2092,6 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Collection"> | number
     slug?: StringWithAggregatesFilter<"Collection"> | string
     poster?: StringWithAggregatesFilter<"Collection"> | string
-    title?: StringWithAggregatesFilter<"Collection"> | string
     user_email?: StringWithAggregatesFilter<"Collection"> | string
     provider?: StringWithAggregatesFilter<"Collection"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Collection"> | Date | string
@@ -2120,7 +2101,6 @@ export namespace Prisma {
   export type CollectionCreateInput = {
     slug: string
     poster: string
-    title: string
     user_email: string
     provider: string
     createdAt?: Date | string
@@ -2131,7 +2111,6 @@ export namespace Prisma {
     id?: number
     slug: string
     poster: string
-    title: string
     user_email: string
     provider: string
     createdAt?: Date | string
@@ -2141,7 +2120,6 @@ export namespace Prisma {
   export type CollectionUpdateInput = {
     slug?: StringFieldUpdateOperationsInput | string
     poster?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2152,7 +2130,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     slug?: StringFieldUpdateOperationsInput | string
     poster?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2163,7 +2140,6 @@ export namespace Prisma {
     id?: number
     slug: string
     poster: string
-    title: string
     user_email: string
     provider: string
     createdAt?: Date | string
@@ -2173,7 +2149,6 @@ export namespace Prisma {
   export type CollectionUpdateManyMutationInput = {
     slug?: StringFieldUpdateOperationsInput | string
     poster?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2184,7 +2159,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     slug?: StringFieldUpdateOperationsInput | string
     poster?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
     user_email?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2237,7 +2211,6 @@ export namespace Prisma {
     id?: SortOrder
     slug?: SortOrder
     poster?: SortOrder
-    title?: SortOrder
     user_email?: SortOrder
     provider?: SortOrder
     createdAt?: SortOrder
@@ -2252,7 +2225,6 @@ export namespace Prisma {
     id?: SortOrder
     slug?: SortOrder
     poster?: SortOrder
-    title?: SortOrder
     user_email?: SortOrder
     provider?: SortOrder
     createdAt?: SortOrder
@@ -2263,7 +2235,6 @@ export namespace Prisma {
     id?: SortOrder
     slug?: SortOrder
     poster?: SortOrder
-    title?: SortOrder
     user_email?: SortOrder
     provider?: SortOrder
     createdAt?: SortOrder

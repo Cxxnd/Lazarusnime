@@ -17,7 +17,6 @@ model Collection {
   id         Int      @id @default(autoincrement())
   slug       String
   poster     String
-  title      String
   user_email String
   provider   String
   createdAt  DateTime @default(now())

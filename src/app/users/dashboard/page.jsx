@@ -21,9 +21,9 @@ const page = async () => {
             <div className="py-8  flex flex-wrap gap-4">
                 <Link
                     className="bg-blue-600 text-white font-bold px-4 py-2 text-xl rounded-lg hover:bg-blue-700 transition-colors"
-                    href="/maintenece"
+                    href="/users/dashboard/collection"
                 >
-                    My Colection
+                    My Collection
                 </Link>
             </div>
         </div>
