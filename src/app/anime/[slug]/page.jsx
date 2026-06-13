@@ -1,11 +1,21 @@
 import { getAnimeDetail } from "@/services/anime.detail";
 import Image from "next/image";
 import Link from "next/link";
+import { authUserSession } from "@/libs/authlibs";
+import BookmarkButton from "@/components/AnimeList/collectionBotton";
 import ButtonBack from "@/components/Navbar/ButtonBack";
+import prisma from "@/libs/prisma";
 
 const Page = async ({ params }) => {
     const { slug } = await params;
+    const user = await authUserSession();
     const data = await getAnimeDetail(slug);
+    const bookmark = await prisma.Bookmark.findFirst({
+        where: {
+            slug: String(slug),
+            user_email: user?.email || "",
+        },
+    });
 
     if (!data)
         return (
@@ -32,6 +42,18 @@ const Page = async ({ params }) => {
                 <div className="flex flex-col justify-between">
                     <div>
                         <h1 className="text-3xl font-bold text-blue-400">
+                            {bookmark && (
+                                <p className="text-sm text-color-accent flex justify-end items-end">
+                                    Already in your collection
+                                </p>
+                            )}
+                            {!bookmark && user && (
+                                <BookmarkButton
+                                    user_email={user.email}
+                                    poster={data.poster}
+                                    slug={slug}
+                                />
+                            )}
                             {data.title}
                         </h1>
                         <p className="italic text-gray-400">{data.japanese}</p>
