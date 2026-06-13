@@ -39,7 +39,8 @@ const Page = async () => {
                     My Collection
                 </h1>
                 <p className="text-color-secondary">
-                    Here are the anime you've added to your collection.
+                    Berikut adalah daftar anime yang telah kamu tambahkan ke
+                    koleksi.
                 </p>
             </header>
             <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5">
