@@ -54,7 +54,7 @@ const Page = async ({ params }) => {
                             <div className="flex-shrink-0 self-start">
                                 {bookmark ? (
                                     <p className="text-sm text-blue-400 font-bold whitespace-nowrap">
-                                        Already in your collection
+                                        Added
                                     </p>
                                 ) : (
                                     user && (
