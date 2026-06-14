@@ -68,7 +68,7 @@ export default function VideoPlayer({ streamServers = [] }) {
         const fetchStream = async () => {
             try {
                 const res = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_BASE}${currentServer}`,
+                    `/api/stream?path=${encodeURIComponent(currentServer)}`,
                     {
                         cache: "no-store",
                     },
@@ -92,6 +92,11 @@ export default function VideoPlayer({ streamServers = [] }) {
         fetchStream();
     }, [currentServer]);
 
+    console.log("Stream Servers:", streamServers);
+    console.log("Grouped:", grouped);
+    console.log("Current Quality:", currentQuality);
+    console.log("Current Server:", currentServer);
+    console.log("Stream URL:", streamUrl);
     /* ================= RENDER ================= */
     return (
         <div className="w-full space-y-6">
