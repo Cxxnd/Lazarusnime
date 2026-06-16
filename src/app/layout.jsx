@@ -17,6 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
     title: "LazarusNime",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     description: "Stream Anime Gratis dan Cepat",
 };
 
