@@ -130,6 +130,16 @@ exports.Prisma.CollectionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.HistoryScalarFieldEnum = {
+  id: 'id',
+  animeId: 'animeId',
+  slug: 'slug',
+  title: 'title',
+  poster: 'poster',
+  user_email: 'user_email',
+  watchedAt: 'watchedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -140,9 +150,15 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
-  Collection: 'Collection'
+  Collection: 'Collection',
+  History: 'History'
 };
 
 /**

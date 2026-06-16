@@ -53,6 +53,12 @@ const UserDropdown = ({ user }) => {
                             Dashboard
                         </Link>
                         <Link
+                            href="/users/dashboard/history"
+                            className="block px-4 py-2 hover:bg-gray-800"
+                        >
+                            History Watch
+                        </Link>
+                        <Link
                             href={activationUrl}
                             className="block px-4 py-2 hover:bg-gray-800 text-red-400"
                         >

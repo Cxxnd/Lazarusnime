@@ -2,12 +2,45 @@ import Link from "next/link";
 import VideoPlayer from "@/components/Player/VideoPlayer";
 import ButtonBack from "@/components/Navbar/ButtonBack";
 import { getEpisodeDetail } from "@/services/anime.episode";
+import prisma from "@/libs/prisma";
+import { authUserSession } from "@/libs/authlibs";
+import { getAnimeDetail } from "@/services/anime.detail";
 
 const Page = async ({ params }) => {
     const { slug } = await params;
 
     const data = await getEpisodeDetail(slug);
+    const animeId = data.animeId;
+    const dataPoster = await getAnimeDetail(animeId);
+    const poster = dataPoster.poster;
     const downloads = data?.downloadUrl;
+    const user = await authUserSession();
+
+    if (user) {
+        await prisma.history.upsert({
+            where: {
+                animeId_user_email: {
+                    animeId,
+                    user_email: user.email,
+                },
+            },
+
+            update: {
+                slug: String(slug),
+                title: data.title,
+                watchedAt: new Date(),
+                poster,
+            },
+
+            create: {
+                animeId,
+                slug: String(slug),
+                title: data.title,
+                poster,
+                user_email: user.email,
+            },
+        });
+    }
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white px-6 py-10 space-y-20">

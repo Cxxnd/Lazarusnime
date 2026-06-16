@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type Collection = $Result.DefaultSelection<Prisma.$CollectionPayload>
+/**
+ * Model History
+ * 
+ */
+export type History = $Result.DefaultSelection<Prisma.$HistoryPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -149,6 +154,16 @@ export class PrismaClient<
     * ```
     */
   get collection(): Prisma.CollectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.history`: Exposes CRUD operations for the **History** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Histories
+    * const histories = await prisma.history.findMany()
+    * ```
+    */
+  get history(): Prisma.HistoryDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -583,7 +598,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Collection: 'Collection'
+    Collection: 'Collection',
+    History: 'History'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -599,7 +615,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "collection"
+      modelProps: "collection" | "history"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -674,6 +690,80 @@ export namespace Prisma {
           count: {
             args: Prisma.CollectionCountArgs<ExtArgs>
             result: $Utils.Optional<CollectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      History: {
+        payload: Prisma.$HistoryPayload<ExtArgs>
+        fields: Prisma.HistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.HistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload>
+          }
+          findMany: {
+            args: Prisma.HistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload>[]
+          }
+          create: {
+            args: Prisma.HistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload>
+          }
+          createMany: {
+            args: Prisma.HistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HistoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload>[]
+          }
+          delete: {
+            args: Prisma.HistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload>
+          }
+          update: {
+            args: Prisma.HistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.HistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HistoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.HistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.HistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHistory>
+          }
+          groupBy: {
+            args: Prisma.HistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<HistoryCountAggregateOutputType> | number
           }
         }
       }
@@ -786,6 +876,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     collection?: CollectionOmit
+    history?: HistoryOmit
   }
 
   /* Types for Logging */
@@ -1927,6 +2018,1066 @@ export namespace Prisma {
 
 
   /**
+   * Model History
+   */
+
+  export type AggregateHistory = {
+    _count: HistoryCountAggregateOutputType | null
+    _avg: HistoryAvgAggregateOutputType | null
+    _sum: HistorySumAggregateOutputType | null
+    _min: HistoryMinAggregateOutputType | null
+    _max: HistoryMaxAggregateOutputType | null
+  }
+
+  export type HistoryAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type HistorySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type HistoryMinAggregateOutputType = {
+    id: number | null
+    animeId: string | null
+    slug: string | null
+    title: string | null
+    poster: string | null
+    user_email: string | null
+    watchedAt: Date | null
+  }
+
+  export type HistoryMaxAggregateOutputType = {
+    id: number | null
+    animeId: string | null
+    slug: string | null
+    title: string | null
+    poster: string | null
+    user_email: string | null
+    watchedAt: Date | null
+  }
+
+  export type HistoryCountAggregateOutputType = {
+    id: number
+    animeId: number
+    slug: number
+    title: number
+    poster: number
+    user_email: number
+    watchedAt: number
+    _all: number
+  }
+
+
+  export type HistoryAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type HistorySumAggregateInputType = {
+    id?: true
+  }
+
+  export type HistoryMinAggregateInputType = {
+    id?: true
+    animeId?: true
+    slug?: true
+    title?: true
+    poster?: true
+    user_email?: true
+    watchedAt?: true
+  }
+
+  export type HistoryMaxAggregateInputType = {
+    id?: true
+    animeId?: true
+    slug?: true
+    title?: true
+    poster?: true
+    user_email?: true
+    watchedAt?: true
+  }
+
+  export type HistoryCountAggregateInputType = {
+    id?: true
+    animeId?: true
+    slug?: true
+    title?: true
+    poster?: true
+    user_email?: true
+    watchedAt?: true
+    _all?: true
+  }
+
+  export type HistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which History to aggregate.
+     */
+    where?: HistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Histories to fetch.
+     */
+    orderBy?: HistoryOrderByWithRelationInput | HistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Histories
+    **/
+    _count?: true | HistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HistoryMaxAggregateInputType
+  }
+
+  export type GetHistoryAggregateType<T extends HistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHistory[P]>
+      : GetScalarType<T[P], AggregateHistory[P]>
+  }
+
+
+
+
+  export type HistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HistoryWhereInput
+    orderBy?: HistoryOrderByWithAggregationInput | HistoryOrderByWithAggregationInput[]
+    by: HistoryScalarFieldEnum[] | HistoryScalarFieldEnum
+    having?: HistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HistoryCountAggregateInputType | true
+    _avg?: HistoryAvgAggregateInputType
+    _sum?: HistorySumAggregateInputType
+    _min?: HistoryMinAggregateInputType
+    _max?: HistoryMaxAggregateInputType
+  }
+
+  export type HistoryGroupByOutputType = {
+    id: number
+    animeId: string
+    slug: string
+    title: string
+    poster: string | null
+    user_email: string
+    watchedAt: Date
+    _count: HistoryCountAggregateOutputType | null
+    _avg: HistoryAvgAggregateOutputType | null
+    _sum: HistorySumAggregateOutputType | null
+    _min: HistoryMinAggregateOutputType | null
+    _max: HistoryMaxAggregateOutputType | null
+  }
+
+  type GetHistoryGroupByPayload<T extends HistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], HistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    animeId?: boolean
+    slug?: boolean
+    title?: boolean
+    poster?: boolean
+    user_email?: boolean
+    watchedAt?: boolean
+  }, ExtArgs["result"]["history"]>
+
+  export type HistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    animeId?: boolean
+    slug?: boolean
+    title?: boolean
+    poster?: boolean
+    user_email?: boolean
+    watchedAt?: boolean
+  }, ExtArgs["result"]["history"]>
+
+  export type HistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    animeId?: boolean
+    slug?: boolean
+    title?: boolean
+    poster?: boolean
+    user_email?: boolean
+    watchedAt?: boolean
+  }, ExtArgs["result"]["history"]>
+
+  export type HistorySelectScalar = {
+    id?: boolean
+    animeId?: boolean
+    slug?: boolean
+    title?: boolean
+    poster?: boolean
+    user_email?: boolean
+    watchedAt?: boolean
+  }
+
+  export type HistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "animeId" | "slug" | "title" | "poster" | "user_email" | "watchedAt", ExtArgs["result"]["history"]>
+
+  export type $HistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "History"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      animeId: string
+      slug: string
+      title: string
+      poster: string | null
+      user_email: string
+      watchedAt: Date
+    }, ExtArgs["result"]["history"]>
+    composites: {}
+  }
+
+  type HistoryGetPayload<S extends boolean | null | undefined | HistoryDefaultArgs> = $Result.GetResult<Prisma.$HistoryPayload, S>
+
+  type HistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HistoryCountAggregateInputType | true
+    }
+
+  export interface HistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['History'], meta: { name: 'History' } }
+    /**
+     * Find zero or one History that matches the filter.
+     * @param {HistoryFindUniqueArgs} args - Arguments to find a History
+     * @example
+     * // Get one History
+     * const history = await prisma.history.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HistoryFindUniqueArgs>(args: SelectSubset<T, HistoryFindUniqueArgs<ExtArgs>>): Prisma__HistoryClient<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one History that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HistoryFindUniqueOrThrowArgs} args - Arguments to find a History
+     * @example
+     * // Get one History
+     * const history = await prisma.history.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, HistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HistoryClient<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first History that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoryFindFirstArgs} args - Arguments to find a History
+     * @example
+     * // Get one History
+     * const history = await prisma.history.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HistoryFindFirstArgs>(args?: SelectSubset<T, HistoryFindFirstArgs<ExtArgs>>): Prisma__HistoryClient<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first History that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoryFindFirstOrThrowArgs} args - Arguments to find a History
+     * @example
+     * // Get one History
+     * const history = await prisma.history.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, HistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__HistoryClient<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Histories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Histories
+     * const histories = await prisma.history.findMany()
+     * 
+     * // Get first 10 Histories
+     * const histories = await prisma.history.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const historyWithIdOnly = await prisma.history.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HistoryFindManyArgs>(args?: SelectSubset<T, HistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a History.
+     * @param {HistoryCreateArgs} args - Arguments to create a History.
+     * @example
+     * // Create one History
+     * const History = await prisma.history.create({
+     *   data: {
+     *     // ... data to create a History
+     *   }
+     * })
+     * 
+     */
+    create<T extends HistoryCreateArgs>(args: SelectSubset<T, HistoryCreateArgs<ExtArgs>>): Prisma__HistoryClient<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Histories.
+     * @param {HistoryCreateManyArgs} args - Arguments to create many Histories.
+     * @example
+     * // Create many Histories
+     * const history = await prisma.history.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HistoryCreateManyArgs>(args?: SelectSubset<T, HistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Histories and returns the data saved in the database.
+     * @param {HistoryCreateManyAndReturnArgs} args - Arguments to create many Histories.
+     * @example
+     * // Create many Histories
+     * const history = await prisma.history.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Histories and only return the `id`
+     * const historyWithIdOnly = await prisma.history.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HistoryCreateManyAndReturnArgs>(args?: SelectSubset<T, HistoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a History.
+     * @param {HistoryDeleteArgs} args - Arguments to delete one History.
+     * @example
+     * // Delete one History
+     * const History = await prisma.history.delete({
+     *   where: {
+     *     // ... filter to delete one History
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HistoryDeleteArgs>(args: SelectSubset<T, HistoryDeleteArgs<ExtArgs>>): Prisma__HistoryClient<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one History.
+     * @param {HistoryUpdateArgs} args - Arguments to update one History.
+     * @example
+     * // Update one History
+     * const history = await prisma.history.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HistoryUpdateArgs>(args: SelectSubset<T, HistoryUpdateArgs<ExtArgs>>): Prisma__HistoryClient<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Histories.
+     * @param {HistoryDeleteManyArgs} args - Arguments to filter Histories to delete.
+     * @example
+     * // Delete a few Histories
+     * const { count } = await prisma.history.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HistoryDeleteManyArgs>(args?: SelectSubset<T, HistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Histories
+     * const history = await prisma.history.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HistoryUpdateManyArgs>(args: SelectSubset<T, HistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Histories and returns the data updated in the database.
+     * @param {HistoryUpdateManyAndReturnArgs} args - Arguments to update many Histories.
+     * @example
+     * // Update many Histories
+     * const history = await prisma.history.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Histories and only return the `id`
+     * const historyWithIdOnly = await prisma.history.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HistoryUpdateManyAndReturnArgs>(args: SelectSubset<T, HistoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one History.
+     * @param {HistoryUpsertArgs} args - Arguments to update or create a History.
+     * @example
+     * // Update or create a History
+     * const history = await prisma.history.upsert({
+     *   create: {
+     *     // ... data to create a History
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the History we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HistoryUpsertArgs>(args: SelectSubset<T, HistoryUpsertArgs<ExtArgs>>): Prisma__HistoryClient<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoryCountArgs} args - Arguments to filter Histories to count.
+     * @example
+     * // Count the number of Histories
+     * const count = await prisma.history.count({
+     *   where: {
+     *     // ... the filter for the Histories we want to count
+     *   }
+     * })
+    **/
+    count<T extends HistoryCountArgs>(
+      args?: Subset<T, HistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a History.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HistoryAggregateArgs>(args: Subset<T, HistoryAggregateArgs>): Prisma.PrismaPromise<GetHistoryAggregateType<T>>
+
+    /**
+     * Group by History.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HistoryGroupByArgs['orderBy'] }
+        : { orderBy?: HistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the History model
+   */
+  readonly fields: HistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for History.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the History model
+   */
+  interface HistoryFieldRefs {
+    readonly id: FieldRef<"History", 'Int'>
+    readonly animeId: FieldRef<"History", 'String'>
+    readonly slug: FieldRef<"History", 'String'>
+    readonly title: FieldRef<"History", 'String'>
+    readonly poster: FieldRef<"History", 'String'>
+    readonly user_email: FieldRef<"History", 'String'>
+    readonly watchedAt: FieldRef<"History", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * History findUnique
+   */
+  export type HistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which History to fetch.
+     */
+    where: HistoryWhereUniqueInput
+  }
+
+  /**
+   * History findUniqueOrThrow
+   */
+  export type HistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which History to fetch.
+     */
+    where: HistoryWhereUniqueInput
+  }
+
+  /**
+   * History findFirst
+   */
+  export type HistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which History to fetch.
+     */
+    where?: HistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Histories to fetch.
+     */
+    orderBy?: HistoryOrderByWithRelationInput | HistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Histories.
+     */
+    cursor?: HistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Histories.
+     */
+    distinct?: HistoryScalarFieldEnum | HistoryScalarFieldEnum[]
+  }
+
+  /**
+   * History findFirstOrThrow
+   */
+  export type HistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which History to fetch.
+     */
+    where?: HistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Histories to fetch.
+     */
+    orderBy?: HistoryOrderByWithRelationInput | HistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Histories.
+     */
+    cursor?: HistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Histories.
+     */
+    distinct?: HistoryScalarFieldEnum | HistoryScalarFieldEnum[]
+  }
+
+  /**
+   * History findMany
+   */
+  export type HistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which Histories to fetch.
+     */
+    where?: HistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Histories to fetch.
+     */
+    orderBy?: HistoryOrderByWithRelationInput | HistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Histories.
+     */
+    cursor?: HistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Histories.
+     */
+    distinct?: HistoryScalarFieldEnum | HistoryScalarFieldEnum[]
+  }
+
+  /**
+   * History create
+   */
+  export type HistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * The data needed to create a History.
+     */
+    data: XOR<HistoryCreateInput, HistoryUncheckedCreateInput>
+  }
+
+  /**
+   * History createMany
+   */
+  export type HistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Histories.
+     */
+    data: HistoryCreateManyInput | HistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * History createManyAndReturn
+   */
+  export type HistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many Histories.
+     */
+    data: HistoryCreateManyInput | HistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * History update
+   */
+  export type HistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * The data needed to update a History.
+     */
+    data: XOR<HistoryUpdateInput, HistoryUncheckedUpdateInput>
+    /**
+     * Choose, which History to update.
+     */
+    where: HistoryWhereUniqueInput
+  }
+
+  /**
+   * History updateMany
+   */
+  export type HistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Histories.
+     */
+    data: XOR<HistoryUpdateManyMutationInput, HistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Histories to update
+     */
+    where?: HistoryWhereInput
+    /**
+     * Limit how many Histories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * History updateManyAndReturn
+   */
+  export type HistoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * The data used to update Histories.
+     */
+    data: XOR<HistoryUpdateManyMutationInput, HistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Histories to update
+     */
+    where?: HistoryWhereInput
+    /**
+     * Limit how many Histories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * History upsert
+   */
+  export type HistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * The filter to search for the History to update in case it exists.
+     */
+    where: HistoryWhereUniqueInput
+    /**
+     * In case the History found by the `where` argument doesn't exist, create a new History with this data.
+     */
+    create: XOR<HistoryCreateInput, HistoryUncheckedCreateInput>
+    /**
+     * In case the History was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HistoryUpdateInput, HistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * History delete
+   */
+  export type HistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+    /**
+     * Filter which History to delete.
+     */
+    where: HistoryWhereUniqueInput
+  }
+
+  /**
+   * History deleteMany
+   */
+  export type HistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Histories to delete
+     */
+    where?: HistoryWhereInput
+    /**
+     * Limit how many Histories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * History without action
+   */
+  export type HistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the History
+     */
+    select?: HistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the History
+     */
+    omit?: HistoryOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1953,6 +3104,19 @@ export namespace Prisma {
   export type CollectionScalarFieldEnum = (typeof CollectionScalarFieldEnum)[keyof typeof CollectionScalarFieldEnum]
 
 
+  export const HistoryScalarFieldEnum: {
+    id: 'id',
+    animeId: 'animeId',
+    slug: 'slug',
+    title: 'title',
+    poster: 'poster',
+    user_email: 'user_email',
+    watchedAt: 'watchedAt'
+  };
+
+  export type HistoryScalarFieldEnum = (typeof HistoryScalarFieldEnum)[keyof typeof HistoryScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -1967,6 +3131,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -2098,6 +3270,71 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Collection"> | Date | string
   }
 
+  export type HistoryWhereInput = {
+    AND?: HistoryWhereInput | HistoryWhereInput[]
+    OR?: HistoryWhereInput[]
+    NOT?: HistoryWhereInput | HistoryWhereInput[]
+    id?: IntFilter<"History"> | number
+    animeId?: StringFilter<"History"> | string
+    slug?: StringFilter<"History"> | string
+    title?: StringFilter<"History"> | string
+    poster?: StringNullableFilter<"History"> | string | null
+    user_email?: StringFilter<"History"> | string
+    watchedAt?: DateTimeFilter<"History"> | Date | string
+  }
+
+  export type HistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    animeId?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    poster?: SortOrderInput | SortOrder
+    user_email?: SortOrder
+    watchedAt?: SortOrder
+  }
+
+  export type HistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    animeId_user_email?: HistoryAnimeIdUser_emailCompoundUniqueInput
+    AND?: HistoryWhereInput | HistoryWhereInput[]
+    OR?: HistoryWhereInput[]
+    NOT?: HistoryWhereInput | HistoryWhereInput[]
+    animeId?: StringFilter<"History"> | string
+    slug?: StringFilter<"History"> | string
+    title?: StringFilter<"History"> | string
+    poster?: StringNullableFilter<"History"> | string | null
+    user_email?: StringFilter<"History"> | string
+    watchedAt?: DateTimeFilter<"History"> | Date | string
+  }, "id" | "animeId_user_email">
+
+  export type HistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    animeId?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    poster?: SortOrderInput | SortOrder
+    user_email?: SortOrder
+    watchedAt?: SortOrder
+    _count?: HistoryCountOrderByAggregateInput
+    _avg?: HistoryAvgOrderByAggregateInput
+    _max?: HistoryMaxOrderByAggregateInput
+    _min?: HistoryMinOrderByAggregateInput
+    _sum?: HistorySumOrderByAggregateInput
+  }
+
+  export type HistoryScalarWhereWithAggregatesInput = {
+    AND?: HistoryScalarWhereWithAggregatesInput | HistoryScalarWhereWithAggregatesInput[]
+    OR?: HistoryScalarWhereWithAggregatesInput[]
+    NOT?: HistoryScalarWhereWithAggregatesInput | HistoryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"History"> | number
+    animeId?: StringWithAggregatesFilter<"History"> | string
+    slug?: StringWithAggregatesFilter<"History"> | string
+    title?: StringWithAggregatesFilter<"History"> | string
+    poster?: StringNullableWithAggregatesFilter<"History"> | string | null
+    user_email?: StringWithAggregatesFilter<"History"> | string
+    watchedAt?: DateTimeWithAggregatesFilter<"History"> | Date | string
+  }
+
   export type CollectionCreateInput = {
     slug: string
     poster: string
@@ -2163,6 +3400,73 @@ export namespace Prisma {
     provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HistoryCreateInput = {
+    animeId: string
+    slug: string
+    title: string
+    poster?: string | null
+    user_email: string
+    watchedAt?: Date | string
+  }
+
+  export type HistoryUncheckedCreateInput = {
+    id?: number
+    animeId: string
+    slug: string
+    title: string
+    poster?: string | null
+    user_email: string
+    watchedAt?: Date | string
+  }
+
+  export type HistoryUpdateInput = {
+    animeId?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    user_email?: StringFieldUpdateOperationsInput | string
+    watchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HistoryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    animeId?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    user_email?: StringFieldUpdateOperationsInput | string
+    watchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HistoryCreateManyInput = {
+    id?: number
+    animeId: string
+    slug: string
+    title: string
+    poster?: string | null
+    user_email: string
+    watchedAt?: Date | string
+  }
+
+  export type HistoryUpdateManyMutationInput = {
+    animeId?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    user_email?: StringFieldUpdateOperationsInput | string
+    watchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HistoryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    animeId?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    user_email?: StringFieldUpdateOperationsInput | string
+    watchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2293,6 +3597,87 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type HistoryAnimeIdUser_emailCompoundUniqueInput = {
+    animeId: string
+    user_email: string
+  }
+
+  export type HistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    animeId?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    poster?: SortOrder
+    user_email?: SortOrder
+    watchedAt?: SortOrder
+  }
+
+  export type HistoryAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type HistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    animeId?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    poster?: SortOrder
+    user_email?: SortOrder
+    watchedAt?: SortOrder
+  }
+
+  export type HistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    animeId?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    poster?: SortOrder
+    user_email?: SortOrder
+    watchedAt?: SortOrder
+  }
+
+  export type HistorySumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2307,6 +3692,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2401,6 +3790,48 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
 

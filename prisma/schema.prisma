@@ -23,3 +23,14 @@ model Collection {
   updatedAt       DateTime @updatedAt
   @@unique([slug, user_email])
 }
+
+model History {
+  id         Int      @id @default(autoincrement())
+  animeId    String
+  slug       String
+  title      String
+  poster     String?
+  user_email String
+  watchedAt  DateTime @default(now())
+  @@unique([animeId, user_email])
+}
