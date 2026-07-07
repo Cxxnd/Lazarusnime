@@ -47,11 +47,16 @@ export async function fetchAPI(url) {
         },
     });
 
-    const contentType = res.headers.get('content-type');
-
     if (!res.ok) {
-        throw new Error(`Fetch gagal (${res.status})`);
+        throw new Error("SERVER_DOWN");
     }
+
+    const contentType = res.headers.get("content-type");
+
+    if (!contentType?.includes("application/json")) {
+        throw new Error("SERVER_DOWN");
+    }
+
 
     // 🔥 cegah error "<!DOCTYPE html>"
     if (!contentType?.includes('application/json')) {
@@ -60,5 +65,5 @@ export async function fetchAPI(url) {
         throw new Error('Response bukan JSON');
     }
 
-    return res.json();
+    return await res.json();
 }
