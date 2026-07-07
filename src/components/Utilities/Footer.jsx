@@ -5,7 +5,7 @@ const Footer = () => {
                 <p className="text-sm text-gray-400">
                     © {new Date().getFullYear()}{" "}
                     <span className="font-semibold text-white">
-                        LazarusnimeKomik
+                        Lazarusnime
                     </span>
                     . All Rights Reserved.
                 </p>
